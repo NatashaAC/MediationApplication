@@ -1,0 +1,14 @@
+﻿@model MediationApplication.Models.MeditationSessionDto
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<a href="/MeditationSession/List">Back to list</a>
+<a href="/MeditationSession/DeleteConfirm/@Model.SessionID">Delete</a>
+
+<h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+<div>
+    <p>Meditated from @Model.SessionStartTime.ToString("t") to @Model.SessionEndTime.ToString("t")</p>
+    <p>Duration: @Model.SessionDuration</p>
+</div>

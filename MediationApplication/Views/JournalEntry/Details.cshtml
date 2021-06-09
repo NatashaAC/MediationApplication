@@ -1,0 +1,17 @@
+﻿@model MediationApplication.Models.JournalEntryDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/JournalEntry/List">Back to list</a>
+
+<h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+<h3><em>Duration - @Model.SessionDuration</em></h3>
+
+<div>
+    <p>Meditation Location: @Model.Location</p>
+    <p>Feeling(s) before meditating: @Model.MoodBefore</p>
+    <p>Feeling(s) after meditating: @Model.MoodAfter</p>
+    <p>Thoughts and Ideas: @Model.Thoughts</p>
+</div>

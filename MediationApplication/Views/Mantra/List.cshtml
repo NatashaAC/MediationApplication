@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MediationApplication.Models.MantraDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Mantras</h2>
+
+<div>
+    @foreach( var mantra in Model )
+    {
+        <h3><a href="/Mantra/Details/@mantra.MantraID">@mantra.MantraName</a></h3>
+    }
+</div>

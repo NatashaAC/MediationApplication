@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form action="/JournalEntry/Create" method="POST">
+    <div>
+        <label id="session">Session</label>
+        <input id="session" type="number" name="SessionID" />
+    </div>
+    <div>
+        <label>Where did you meditate?</label>
+        <div>
+            <input id="indoor" type="radio" name="Location" value="indoors" />
+            <label for="indoor">Indoors</label>
+
+            <input id="outdoor" type="radio" name="Location" value="outdoors" />
+            <label for="outdoor">Outdoors</label>
+        </div>
+    </div>
+    <div>
+        <label for="moodbefore">How did you feel before meditating?</label>
+        <input id="moodbefore" type="text" name="MoodBefore" />
+    </div>
+    <div>
+        <label for="moodafter">How do you feel now?</label>
+        <input id="moodafter" type="text" name="MoodAfter" />
+    </div>
+    <div>
+        <div>
+            <label for="thoughts">What's on your mind?</label>
+        </div>
+        <textarea id="thoughts" cols="40" rows="10" name="Thoughts"></textarea>
+    </div>
+    <button type="submit">Add Entry</button>
+</form>

@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MediationApplication.Models.JournalEntryDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Journal Entries</h2>
+
+<div>
+    @foreach( var entry in Model )
+    {
+        <div>
+            <h3>Journal Entry for <a href="/JournalEntry/Details/@entry.JournalEntryID"><em>@entry.SessionDate.ToString("dddd, MMMM dd, yyyy")</em></a></h3>
+        </div>
+    }
+</div>

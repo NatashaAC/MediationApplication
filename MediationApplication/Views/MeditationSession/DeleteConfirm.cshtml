@@ -1,0 +1,15 @@
+﻿@model MediationApplication.Models.MeditationSessionDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<a href="/MeditationSession/List">Cancel</a>
+<div>
+    <p>Are you sure you want to delete your meditation session that lasted <strong>@Model.SessionDuration</strong> on <strong>@Model.SessionDate.ToString("MMMM, dd yyyy")</strong>?</p>
+    
+    <form action="/MeditationSession/Delete/@Model.SessionID" method="POST">
+        <button type="submit">Confirm Delete</button>
+    </form>
+</div>

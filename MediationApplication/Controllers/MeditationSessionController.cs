@@ -1,0 +1,162 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Net.Http;
+using System.Diagnostics;
+using MediationApplication.Models;
+using System.Web.Script.Serialization;
+
+namespace MediationApplication.Controllers
+{
+    public class MeditationSessionController : Controller
+    {
+        private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static MeditationSessionController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44316/api/");
+        }
+
+        // GET: MeditationSession/List
+        public ActionResult List()
+        {
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a list of Sessions
+            // curl https://localhost:44316/api/MeditationSessionData/ListSessions
+
+            string url = "MeditationSessionData/ListSessions";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // Debug.WriteLine("The status code is " + response.StatusCode);
+
+            IEnumerable<MeditationSessionDto> MeditationSessions = response.Content.ReadAsAsync<IEnumerable<MeditationSessionDto>>().Result;
+            // Debug.WriteLine("Number of sessions -> " + MeditationSessions.Count());
+
+            return View(MeditationSessions);
+        }
+
+        // GET: MeditationSession/Details/5
+        public ActionResult Details(int id)
+        {
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
+            // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
+
+            string url = "MeditationSessionData/FindSession/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // Debug.WriteLine("The status code is " + response.StatusCode);
+
+            MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
+            // Debug.WriteLine("Date of Session -> " + SelectedSession.SessionDate);
+            // Debug.WriteLine("Duration of Session -> " + SelectedSession.SessionDuration);
+
+            return View(SelectedSession);
+        }
+
+        // GET: MeditationSession/Error
+        public ActionResult Error()
+        {
+            return View();
+        }
+
+        // GET: MeditationSession/New
+        public ActionResult New()
+        {
+            // Objective: Communicate with Mantra Data Api to RETRIEVE a list of Mantras
+            // curl https://localhost:44316/api/MantraData/ListMantras
+            // GET: api/MantraData/ListMantras
+            string url = "MantraData/ListMantras";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            IEnumerable<MantraDto> MantraOptions = response.Content.ReadAsAsync<IEnumerable<MantraDto>>().Result;
+
+            return View(MantraOptions);
+        }
+
+        // POST: MeditationSession/Create
+        [HttpPost]
+        public ActionResult Create(MeditationSession meditationSession)
+        {
+            // Debug.WriteLine("The date of new session -> " + meditationSession.SessionDate);
+
+            // Objective: Communicate with Meditation Session Data Api to ADD a new Session
+            // curl -H "Content-Type:application/json" -d @session.json https://localhost:44316/api/MeditationSessionData/AddSession
+
+            string url = "MeditationSessionData/AddSession";
+
+            string jsonpayload = jss.Serialize(meditationSession);
+            // Debug.WriteLine("The json payload is -> " + jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+
+                return RedirectToAction("List");
+
+            } else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        // GET: MeditationSession/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: MeditationSession/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            // Objective: Communicate with the Meditation Session Api to UPDATE a Session
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: MeditationSession/DeleteConfirm/10
+        public ActionResult DeleteConfirm(int id)
+        {
+            return View();
+        }
+
+        // POST: MeditationSession/Delete/10
+        [HttpPost]
+        public ActionResult Delete(int id, MeditationSession meditationSession)
+        {
+            Debug.WriteLine("The date of the session -> " + meditationSession.SessionDate);
+
+            // Objective: Communicate with the Meditation Session Data Api to DELETE a Session
+            // curl -d "" https://localhost:44316/api/MeditationSessionData/DeleteSession/{id}
+            string url = "MeditationSessionData/DeleteSession/" + id;
+
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            } else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MediationApplication.Models.MantraDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add a Session</h2>
+
+<form action="/Meditationsession/Create" method="POST">
+    <div>
+        <label for="date">Date</label>
+        <input id="date" type="date" name="SessionDate" />
+    </div>
+    <div>
+        <label for="startTime">Start Time</label>
+        <input id="startTime" type="time" name="SessionStartTime" />
+    </div>
+    <div>
+        <label for="endTime">End Time</label>
+        <input id="endTime" type="time" name="SessionEndTime" />
+    </div>
+    <div>
+        <label for="duration">Duration</label>
+        <select id="duration" name="SessionDuration">
+            <option value="30">30 minutes</option>
+            <option value="1">1 hour</option>
+            <option value="2">2 hours</option>
+        </select>
+    </div>
+    <div>
+        <label for="mantra">Mantra</label>
+        <select id="mantra" name="MantraID">
+            @foreach (var mantras in Model)
+            {
+                <option value="@mantras.MantraID">@mantras.MantraName</option>
+            }
+        </select>
+    </div>
+    <button type="submit">Add</button>
+</form>
