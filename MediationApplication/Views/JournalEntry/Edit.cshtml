@@ -1,0 +1,45 @@
+﻿@model MediationApplication.Models.JournalEntryDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<a href="/JournalEntry/List">Back to list</a>
+
+<h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+
+<form action="/JournalEntry/Update/@Model.JournalEntryID" method="POST">
+    <div style="display: none;">
+        <input type="text" name="JournalEntryID" value="@Model.JournalEntryID" />
+    </div>
+    <div>
+        <label>Session Date</label>
+        <input type="date" name="SessionDate" value="@Model.SessionDate.ToString("MMMM, dd yyyy")" />
+    </div>
+    <div>
+        <label>Where did you meditate?</label>
+        <div>
+            <input id="indoor" type="radio" name="Location" value="@Model.Location" />
+            <label for="indoor">Indoors</label>
+
+            <input id="outdoor" type="radio" name="Location" value="@Model.Location" />
+            <label for="outdoor">Outdoors</label>
+        </div>
+    </div>
+    <div>
+        <label for="moodbefore">How did you feel before meditating?</label>
+        <input id="moodbefore" type="text" name="MoodBefore" value="@Model.MoodBefore" />
+    </div>
+    <div>
+        <label for="moodafter">How do you feel now?</label>
+        <input id="moodafter" type="text" name="MoodAfter" value="@Model.MoodAfter" />
+    </div>
+    <div>
+        <div>
+            <label for="thoughts">What's on your mind?</label>
+        </div>
+        <textarea id="thoughts" cols="40" rows="10" name="Thoughts">@Model.Thoughts</textarea>
+    </div>
+    <button type="submit">Update Entry</button>
+</form>

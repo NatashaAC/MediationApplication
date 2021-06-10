@@ -1,0 +1,14 @@
+﻿@model MediationApplication.Models.JournalEntryDto
+
+@{
+    ViewBag.Title = "DeleteConfirmation";
+}
+
+<a href="/JournalEntry/List">Cancel</a>
+<div>
+    <p>Are you sure you want to delete</p>
+    <h2>@Model.SessionDate</h2>
+</div>
+<form action="/JournalEntry/Delete/@Model.JournalEntryID" method="POST">
+    <button type="submit">Confirm Delete</button>
+</form>

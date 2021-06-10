@@ -51,6 +51,8 @@ namespace MediationApplication.Controllers
             MantraDto SelectedMantra = response.Content.ReadAsAsync<MantraDto>().Result;
             Debug.WriteLine("Name of selected mantra -> " + SelectedMantra.MantraName);
 
+            // See a list of mantras that are in the same category
+
             return View(SelectedMantra);
         }
 
