@@ -1,7 +1,14 @@
-﻿
+﻿@model MediationApplication.Models.MantraDto
 @{
     ViewBag.Title = "DeleteConfirmation";
 }
 
-<h2>DeleteConfirmation</h2>
+<a href="/Mantra/List">Cancel</a>
 
+<div>
+    <p>Are you sure you want to delete @Model.MantraName</p>
+</div>
+
+<form action="/Mantra/Delete/@Model.MantraID" method="POST">
+    <button type="submit">Confirm Delete</button>
+</form>

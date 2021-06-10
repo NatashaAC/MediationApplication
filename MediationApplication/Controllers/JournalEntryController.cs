@@ -23,7 +23,7 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/List
         public ActionResult List()
         {
-            // Objective: Communicate with journal entry data api to retrieve a list of entries
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE a List of Entries
             // curl https://localhost:44316/api/JournalEntryData/ListEntries
 
             string url = "JournalEntryData/ListEntries";
@@ -40,7 +40,7 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/Details/5
         public ActionResult Details(int id)
         {
-            // Objective: Communicate with journal entry data api to retrieve a list of entries
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
             // curl https://localhost:44316/api/JournalEntryData/FindEntry/{id}
 
             string url = "JournalEntryData/FindEntry/" + id;
@@ -92,7 +92,7 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/Edit/5
         public ActionResult Edit(int id)
         {
-            // find entry
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
             string url = "JournalEntryData/FindEntry/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
@@ -108,9 +108,8 @@ namespace MediationApplication.Controllers
         {
             // Debug.WriteLine("The date of new session -> " + journalEntry.JournalEntryID);
 
-            // Objective: Communicate with Journal entry data api to update a  entry
+            // Objective: Communicate with Journal Entry Data Api to UPDATE an Entry
             // curl -H "Content-Type:application/json" -d @entry.json https://localhost:44316/api/JournalEntryData/UpdateEntry/{id}
-
             string url = "JournalEntryData/UpdateEntry/" + id;
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
@@ -135,6 +134,8 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/DeleteConfirmation/5
         public ActionResult DeleteConfirmation(int id)
         {
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
+            // curl -d "" https://localhost:44316/api/JournalEntryData/DeleteEntry/{id}
             string url = "JournalEntryData/FindEntry/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -148,6 +149,8 @@ namespace MediationApplication.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            // Objective: Communicate with Journal Entry Data Api to DELETE an Entry
+            // curl -d "" https://localhost:44316/api/JournalEntryData/DeleteEntry/{id}
             string url = "JournalEntryData/DeleteEntry/" + id;
 
             HttpContent content = new StringContent("");

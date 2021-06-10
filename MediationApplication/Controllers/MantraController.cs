@@ -17,7 +17,7 @@ namespace MediationApplication.Controllers
         static MantraController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44316/api/MantraData/");
+            client.BaseAddress = new Uri("https://localhost:44316/api/");
         }
 
         // GET: Mantra/List
@@ -26,7 +26,7 @@ namespace MediationApplication.Controllers
             // Objective: Communicate with mantra data api to retrieve a list of mantras
             // curl https://localhost:44316/api/MantraData/ListMantras
 
-            string url = "ListMantras";
+            string url = "MantraData/ListMantras";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The status code is " + response.StatusCode);
@@ -43,7 +43,7 @@ namespace MediationApplication.Controllers
             // Objective: Communicate with mantra data api to retrieve a list of mantras
             // curl https://localhost:44316/api/MantraData/FindMantra/{id}
 
-            string url = "FindMantra/" + id;
+            string url = "MantraData/FindMantra/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The status code is " + response.StatusCode);
@@ -54,6 +54,12 @@ namespace MediationApplication.Controllers
             // See a list of mantras that are in the same category
 
             return View(SelectedMantra);
+        }
+
+        // GET: MeditationSession/Error
+        public ActionResult Error()
+        {
+            return View();
         }
 
         // GET: Mantra/New
@@ -71,7 +77,7 @@ namespace MediationApplication.Controllers
             // Objective: Communicate with mantra data api to add a new mantra
             // curl -H "Content-Type:application/json" -d @mantra.json https://localhost:44316/api/MantraData/AddMantra
 
-            string url = "AddMantra";
+            string url = "MantraData/AddMantra";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(mantra);
@@ -93,7 +99,7 @@ namespace MediationApplication.Controllers
 
         // POST: Mantra/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, FormCollection collection)
         {
             try
             {
@@ -107,25 +113,41 @@ namespace MediationApplication.Controllers
             }
         }
 
-        // GET: Mantra/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Mantra/DeleteConfirmation/5
+        public ActionResult DeleteConfirmation(int id)
         {
-            return View();
+            // Objective: Communicate with Mantra Data Api to DELETE a Mantra
+            // curl -d "" https://localhost:44316/api/MantraData/FindMantra/{id}
+            string url = "MantraData/FindMantra/" + id;
+
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            MantraDto SelectedMantra = response.Content.ReadAsAsync<MantraDto>().Result;
+            // Debug.WriteLine("Mantra name -> " + SelectedMantra.MantraName);
+
+            return View(SelectedMantra);
         }
 
         // POST: Mantra/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            // Objective: Communicate with Mantra Data Api to DELETE a Mantra
+            // curl -d "" https://localhost:44316/api/MantraData/DeleteMantra/{id}
+            string url = "MantraData/DeleteMantra/" + id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if(response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+
+            } else
+            {
+                return RedirectToAction("Error");
             }
         }
     }
