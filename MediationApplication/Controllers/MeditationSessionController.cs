@@ -54,6 +54,8 @@ namespace MediationApplication.Controllers
             // Debug.WriteLine("Date of Session -> " + SelectedSession.SessionDate);
             // Debug.WriteLine("Duration of Session -> " + SelectedSession.SessionDuration);
 
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry 
+
             return View(SelectedSession);
         }
 
@@ -110,69 +112,62 @@ namespace MediationApplication.Controllers
         // GET: MeditationSession/Edit/5
         public ActionResult Edit(int id)
         {
-            UpdateSession ViewModel = new UpdateSession();
-            
-            // Objective One: Communicate with the Meditation Session Api to UPDATE a Session
-            // curl -H "Content-Type:application/json" -d @session.json https://localhost:44316/api/MeditationSessionData/UpdateSession/{id}
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
+            // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
             string url = "MeditationSessionData/FindSession/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
+
             MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
-            ViewModel.SelectedSession = SelectedSession;
 
-            // Objective Two: Communicate with the Mantra Api to include a List of Mantras to choose from when UPDATING a Session
-            // curl https://localhost:44316/api/MantraData/ListMantras
-            // GET: api/MantraData/ListMantras
-            url = "MantraData/ListMantras";
-            response = client.GetAsync(url).Result;
-
-            IEnumerable<MantraDto> MantraOptions = response.Content.ReadAsAsync<IEnumerable<MantraDto>>().Result;
-            ViewModel.MantraOptions = MantraOptions;
-
-
-            return View(ViewModel);
+            return View(SelectedSession);
         }
 
-        // POST: MeditationSession/Edit/5
+        // POST: MeditationSession/Update/5
         [HttpPost]
         public ActionResult Update(int id, MeditationSession meditationSession)
         {
-            // Objective: Communicate with the Meditation Session Api to UPDATE a Session
-            // curl -H "Content-Type:application/json" -d @session.json https://localhost:44316/api/MeditationSessionData/UpdateSession/{id}
-            string url = "MeditationSessionData/FindSession/" + id;
+            // Objective: Communicate with the Meditation Session Data Api to UPDATE a Session
+            // curl -H "Content-Type:application/json" -d @animal.json https://localhost:44316/api/MeditationSession/UpdateSession/{id}
+            string url = "MeditationSessionData/UpdateSession" + id;
 
             string jsonpayload = jss.Serialize(meditationSession);
-            Debug.WriteLine("The json payload is -> " + jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
-            Debug.WriteLine("The content is -> " + content);
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
             if(response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
+
             } else
             {
                 return RedirectToAction("Error");
             }
         }
 
-        // GET: MeditationSession/DeleteConfirm/10
-        public ActionResult DeleteConfirm(int id)
+        // GET: MeditationSession/DeleteConfirmation/10
+        public ActionResult DeleteConfirmation(int id)
         {
-            return View();
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
+            // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
+            string url = "MeditationSessionData/FindSession/" + id;
+
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
+
+            return View(SelectedSession);
         }
 
         // POST: MeditationSession/Delete/10
         [HttpPost]
-        public ActionResult Delete(int id, MeditationSession meditationSession)
+        public ActionResult Delete(int id)
         {
-            Debug.WriteLine("The date of the session -> " + meditationSession.SessionDate);
-
-            // Objective: Communicate with the Meditation Session Data Api to DELETE a Session
-            // curl -d "" https://localhost:44316/api/MeditationSessionData/DeleteSession/{id}
+            // Objective: Communicate with Meditation Session Data Api to DELETE an Entry
+            // curl -d "" https://localhost:44316/api/MantraData/DeleteEntry/{id}
             string url = "MeditationSessionData/DeleteSession/" + id;
 
             HttpContent content = new StringContent("");
@@ -180,10 +175,12 @@ namespace MediationApplication.Controllers
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
-            } else
+
+            }
+            else
             {
                 return RedirectToAction("Error");
             }

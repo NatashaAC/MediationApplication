@@ -6,10 +6,13 @@
 
 <a href="/MeditationSession/List">Back to list</a>
 <a href="/MeditationSession/Edit/@Model.SessionID">Update</a>
-<a style="color: red;" href="/MeditationSession/DeleteConfirm/@Model.SessionID">Delete</a>
+<a style="color: red;" href="/MeditationSession/DeleteConfirmation/@Model.SessionID">Delete</a>
 
 <h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
 <div>
     <p>Meditated from @Model.SessionStartTime.ToString("t") to @Model.SessionEndTime.ToString("t")</p>
     <p>Duration: @Model.SessionDuration</p>
+</div>
+<div>
+    <p>@Model.MantraName</p>
 </div>

@@ -13,6 +13,7 @@ namespace MediationApplication.Controllers
     public class MantraController : Controller
     {
         private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static MantraController()
         {
@@ -29,10 +30,10 @@ namespace MediationApplication.Controllers
             string url = "MantraData/ListMantras";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The status code is " + response.StatusCode);
+            // Debug.WriteLine("The status code is " + response.StatusCode);
 
             IEnumerable<MantraDto> Mantras = response.Content.ReadAsAsync<IEnumerable<MantraDto>>().Result;
-            Debug.WriteLine("Number of mantras -> " + Mantras.Count());
+            // Debug.WriteLine("Number of mantras -> " + Mantras.Count());
 
             return View(Mantras);
         }
@@ -46,10 +47,10 @@ namespace MediationApplication.Controllers
             string url = "MantraData/FindMantra/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The status code is " + response.StatusCode);
+            // Debug.WriteLine("The status code is " + response.StatusCode);
 
             MantraDto SelectedMantra = response.Content.ReadAsAsync<MantraDto>().Result;
-            Debug.WriteLine("Name of selected mantra -> " + SelectedMantra.MantraName);
+            // Debug.WriteLine("Name of selected mantra -> " + SelectedMantra.MantraName);
 
             // See a list of mantras that are in the same category
 
@@ -79,9 +80,8 @@ namespace MediationApplication.Controllers
 
             string url = "MantraData/AddMantra";
 
-            JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(mantra);
-            Debug.WriteLine("The json payload is -> " + jsonpayload);
+            // Debug.WriteLine("The json payload is -> " + jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

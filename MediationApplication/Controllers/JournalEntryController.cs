@@ -13,6 +13,7 @@ namespace MediationApplication.Controllers
     public class JournalEntryController : Controller
     {
         private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static JournalEntryController()
         {
@@ -29,10 +30,10 @@ namespace MediationApplication.Controllers
             string url = "JournalEntryData/ListEntries";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The status code is " + response.StatusCode);
+            // Debug.WriteLine("The status code is " + response.StatusCode);
 
             IEnumerable<JournalEntryDto> JournalEntries = response.Content.ReadAsAsync<IEnumerable<JournalEntryDto>>().Result;
-            Debug.WriteLine("Number of Journal Entries -> " + JournalEntries.Count());
+            // Debug.WriteLine("Number of Journal Entries -> " + JournalEntries.Count());
 
             return View(JournalEntries);
         }
@@ -46,10 +47,10 @@ namespace MediationApplication.Controllers
             string url = "JournalEntryData/FindEntry/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("The status code is " + response.StatusCode);
+            // Debug.WriteLine("The status code is " + response.StatusCode);
 
             JournalEntryDto SelectedEntry = response.Content.ReadAsAsync<JournalEntryDto>().Result;
-            Debug.WriteLine("Date of Journal Entry -> " + SelectedEntry);
+            // Debug.WriteLine("Date of Journal Entry -> " + SelectedEntry);
 
             return View(SelectedEntry);
         }
@@ -70,16 +71,15 @@ namespace MediationApplication.Controllers
         [HttpPost]
         public ActionResult Create(JournalEntry journalEntry)
         {
-            Debug.WriteLine("The date of new session -> " + journalEntry.JournalEntryID);
+            // Debug.WriteLine("The date of new session -> " + journalEntry.JournalEntryID);
 
             // Objective: Communicate with Journal entry data api to add a new entry
             // curl -H "Content-Type:application/json" -d @entry.json https://localhost:44316/api/JournalEntryData/AddEntry
 
             string url = "JournalEntryData/AddEntry";
 
-            JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(journalEntry);
-            Debug.WriteLine("The json payload is -> " + jsonpayload);
+            // Debug.WriteLine("The json payload is -> " + jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -92,42 +92,23 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/Edit/5
         public ActionResult Edit(int id)
         {
-            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
-            string url = "JournalEntryData/FindEntry/" + id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
-
-            JournalEntryDto SelectedEntry = response.Content.ReadAsAsync<JournalEntryDto>().Result;
-
-
-            return View(SelectedEntry);
+          
+            return View();
         }
 
         // POST: JournalEntry/Update/5
         [HttpPost]
         public ActionResult Update(int id, JournalEntry journalEntry)
         {
-            // Debug.WriteLine("The date of new session -> " + journalEntry.JournalEntryID);
-
-            // Objective: Communicate with Journal Entry Data Api to UPDATE an Entry
-            // curl -H "Content-Type:application/json" -d @entry.json https://localhost:44316/api/JournalEntryData/UpdateEntry/{id}
-            string url = "JournalEntryData/UpdateEntry/" + id;
-
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            string jsonpayload = jss.Serialize(journalEntry);
-            // Debug.WriteLine("The json payload is -> " + jsonpayload);
-
-            HttpContent content = new StringContent(jsonpayload);
-            content.Headers.ContentType.MediaType = "application/json";
-
-            HttpResponseMessage response =  client.PostAsync(url, content).Result;
-
-            if(response.IsSuccessStatusCode)
+            try
             {
-                return RedirectToAction("List");
+                // TODO: Add update logic here
 
-            } else
+                return RedirectToAction("Index");
+            }
+            catch
             {
-                return RedirectToAction("Error");
+                return View();
             }
         }
 
@@ -135,7 +116,7 @@ namespace MediationApplication.Controllers
         public ActionResult DeleteConfirmation(int id)
         {
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
-            // curl -d "" https://localhost:44316/api/JournalEntryData/DeleteEntry/{id}
+            // curl https://localhost:44316/api/JournalEntryData/DeleteEntry/{id}
             string url = "JournalEntryData/FindEntry/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
