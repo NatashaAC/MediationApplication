@@ -39,6 +39,8 @@ namespace MediationApplication.Models
 
         public int SessionDuration { get; set; }
 
+        public int MantraID { get; set; }
+
         public string MantraName { get; set; }
     }
 }

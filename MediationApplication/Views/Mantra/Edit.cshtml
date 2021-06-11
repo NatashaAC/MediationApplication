@@ -1,7 +1,17 @@
-﻿
+﻿@model MediationApplication.Models.MantraDto
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 
+<form action="/Mantra/Update/@Model.MantraID" method="POST">
+    <div style="display: none;">
+        <input type="number" name="MantraID" value="@Model.MantraID" />
+    </div>
+    <div>
+        <label>Mantra Name</label>
+        <input type="text" name="MantraName" value="@Model.MantraName" />
+    </div>
+    <button type="submit">Update Mantra</button>
+</form>

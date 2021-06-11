@@ -10,7 +10,7 @@
     {
         <h3><a href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a></h3>
         <div>
-            <p>@session.SessionStartTime.ToString("t") to @session.SessionEndTime.ToString("t")</p>
+            <p>@session.SessionStartTime.ToString("hh:mm") to @session.SessionEndTime.ToString("hh:mm")</p>
             <p>Duration: @session.SessionDuration</p>
         </div>
     }

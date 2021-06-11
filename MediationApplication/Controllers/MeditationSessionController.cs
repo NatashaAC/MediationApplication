@@ -83,7 +83,8 @@ namespace MediationApplication.Controllers
         [HttpPost]
         public ActionResult Create(MeditationSession meditationSession)
         {
-            // Debug.WriteLine("The date of new session -> " + meditationSession.SessionDate);
+            Debug.WriteLine("The date of new session -> " + meditationSession.SessionStartTime);
+            Debug.WriteLine("The start time -> " + meditationSession.SessionEndTime);
 
             // Objective: Communicate with Meditation Session Data Api to ADD a new Session
             // curl -H "Content-Type:application/json" -d @session.json https://localhost:44316/api/MeditationSessionData/AddSession
@@ -91,7 +92,7 @@ namespace MediationApplication.Controllers
             string url = "MeditationSessionData/AddSession";
 
             string jsonpayload = jss.Serialize(meditationSession);
-            // Debug.WriteLine("The json payload is -> " + jsonpayload);
+            Debug.WriteLine("The json payload is -> " + jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

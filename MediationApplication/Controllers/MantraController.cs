@@ -94,22 +94,41 @@ namespace MediationApplication.Controllers
         // GET: Mantra/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            // Objective: Communicate with Mantra Data Api to RETRIEVE a Mantra
+            // curl https://localhost:44316/api/MantraData/FindMantra/{id}
+            string url = "MantraData/FindMantra/" + id;
+
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            MantraDto SelectedMantra = response.Content.ReadAsAsync<MantraDto>().Result;
+            // Debug.WriteLine("Mantra -> " + SelectedMantra.MantraName);
+
+            return View(SelectedMantra);
         }
 
-        // POST: Mantra/Edit/5
+        // POST: Mantra/Update/5
         [HttpPost]
-        public ActionResult Update(int id, FormCollection collection)
+        public ActionResult Update(int id, Mantra mantra)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // Objective: Communicate with Mantra Data Api to UPDATE a Mantra
+            // curl -H "Content-Type:application/json" -d @mantra.json https://localhost:44316/api/MantraData/UpdateMantra/{id}
+            string url = "MantraData/UpdateMantra/" + id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            string jsonpayload = jss.Serialize(mantra);
+            // Debug.WriteLine("The json payload is -> " + jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if(response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            } else
+            {
+                return RedirectToAction("Error");
             }
         }
 

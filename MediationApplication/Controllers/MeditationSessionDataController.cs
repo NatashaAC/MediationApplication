@@ -49,6 +49,7 @@ namespace MediationApplication.Controllers
                 SessionDuration = Session.SessionDuration,
                 SessionStartTime = Session.SessionStartTime,
                 SessionEndTime = Session.SessionEndTime,
+                MantraID = Session.Mantra.MantraID,
                 MantraName = Session.Mantra.MantraName
             };
 
