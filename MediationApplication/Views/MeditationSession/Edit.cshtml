@@ -6,7 +6,7 @@
 <h2>Update a Session</h2>
 
 <form action="/Meditationsession/Update/@Model.SessionID" method="POST">
-    <div>
+    <div style="display:none;">
         <input id="id" type="text" name="SessionID" value="@Model.SessionID" />
     </div>
     <div>
@@ -32,7 +32,7 @@
     </div>
     <div>
         <label for="mantra">Mantra</label>
-        <input type="text" name="MantraName" value="@Model.MantraName" />
+        <input type="number" name="MantraID" value="@Model.MantraID" />
     </div>
     <button type="submit">Update</button>
 </form>

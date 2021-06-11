@@ -130,9 +130,10 @@ namespace MediationApplication.Controllers
         {
             // Objective: Communicate with the Meditation Session Data Api to UPDATE a Session
             // curl -H "Content-Type:application/json" -d @animal.json https://localhost:44316/api/MeditationSession/UpdateSession/{id}
-            string url = "MeditationSessionData/UpdateSession" + id;
+            string url = "MeditationSessionData/UpdateSession/" + id;
 
             string jsonpayload = jss.Serialize(meditationSession);
+            Debug.WriteLine("The json payload is -> " + jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -142,7 +143,6 @@ namespace MediationApplication.Controllers
             if(response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
-
             } else
             {
                 return RedirectToAction("Error");
