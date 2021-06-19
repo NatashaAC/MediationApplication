@@ -16,7 +16,13 @@ namespace MediationApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/MantraData/ListMantras
+        /// <summary>
+        ///     Returns a list of the data in the mantras table within the database.
+        /// </summary>
+        /// <returns> List of Mantras </returns>
+        /// <example>
+        ///     GET: api/MantraData/ListMantras -> Mantra Object, Mantra Object, etc...
+        /// </example>
         [HttpGet]
         public IEnumerable<MantraDto> ListMantras()
         {
@@ -32,7 +38,19 @@ namespace MediationApplication.Controllers
             return MantraDtos;
         }
 
-        // GET: api/MantraData/FindMantra/5
+        /// <summary>
+        ///     Returns the data of a specific Mantra based on the mantra id
+        /// </summary>
+        /// <param name="id"> Mantra Id </param>
+        /// <returns> 
+        ///     HEADER: 200 (OK) 
+        ///     CONTENT: A Mantra related to Mantra Id
+        ///     or 
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     GET: api/MantraData/FindMantra/7 -> I create my own path and walk it with joy
+        /// </example>
         [ResponseType(typeof(Mantra))]
         [HttpGet]
         public IHttpActionResult FindMantra(int id)
@@ -52,7 +70,21 @@ namespace MediationApplication.Controllers
             return Ok(MantraDto);
         }
 
-        // POST: api/MantraData/UpdateMantra/5
+        /// <summary>
+        ///     Updates a Mantra's information in the mantras table within the database.
+        /// </summary>
+        /// <param name="id"> Mantra Id </param>
+        /// <param name="mantra">json Form data of a Mantra</param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No Content)
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MantraData/UpdateMantra/8
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateMantra(int id, Mantra mantra)
@@ -88,7 +120,19 @@ namespace MediationApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/MantraData/AddMantra
+        /// <summary>
+        ///     Adds a new mantra to the mantras table within the database.
+        /// </summary>
+        /// <param name="mantra"> json Form Data of a mantra </param>
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Mantra data
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MantraData/AddMantra
+        /// </example>
         [ResponseType(typeof(Mantra))]
         [HttpPost]
         public IHttpActionResult AddMantra(Mantra mantra)
@@ -104,7 +148,18 @@ namespace MediationApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = mantra.MantraID }, mantra);
         }
 
-        // POST: api/MantraData/DeleteMantra/5
+        /// <summary>
+        ///     Deletes a mantra from the mantra table within the database
+        /// </summary>
+        /// <param name="id"> Mantra Id </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MantraData/DeleteMantra/5
+        /// </example>
         [ResponseType(typeof(Mantra))]
         [HttpPost]
         public IHttpActionResult DeleteMantra(int id)

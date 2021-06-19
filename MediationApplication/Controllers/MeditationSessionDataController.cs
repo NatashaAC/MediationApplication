@@ -16,7 +16,13 @@ namespace MediationApplication.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/MeditationSessionData/ListSessions
+        /// <summary>
+        ///     Returns a list of the data in the meditationsessions table within the database.
+        /// </summary>
+        /// <returns> List of Meditation Sessions </returns>
+        /// <example>
+        ///     GET: api/MeditationSessionData/ListSessions
+        /// </example>
         [HttpGet]
         public IEnumerable<MeditationSessionDto> ListSessions()
         {
@@ -36,7 +42,19 @@ namespace MediationApplication.Controllers
             return MeditationSessionDtos;
         }
 
-        // GET: api/MeditationSessionData/FindSession/5
+        /// <summary>
+        ///     Returns the data of a specific Meditation Session based on the Session id
+        /// </summary>
+        /// <param name="id"> Meditation Session Id </param>
+        /// <returns>
+        ///     HEADER: 200 (OK) 
+        ///     CONTENT: A Session related to Meditation Session Id
+        ///     or 
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     GET: api/MeditationSessionData/FindSession/5
+        /// </example>
         [ResponseType(typeof(MeditationSessionDto))]
         [HttpGet]
         public IHttpActionResult FindSession(int id)
@@ -61,7 +79,21 @@ namespace MediationApplication.Controllers
             return Ok(MeditationSessionDto);
         }
 
-        // POST: api/MeditationSessionData/UpdateSession/5
+        /// <summary>
+        ///     Updates a Session's information in the meditationsessions table within the database.
+        /// </summary>
+        /// <param name="id"> Session Id </param>
+        /// <param name="meditationSession"> Meditation Session Object </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No Content)
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MeditationSessionData/UpdateSession/5
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateSession(int id, MeditationSession meditationSession)
@@ -97,7 +129,19 @@ namespace MediationApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/MeditationSessionData/AddSession
+        /// <summary>
+        ///     Adds a new session to the meditationsessions table within the database.
+        /// </summary>
+        /// <param name="meditationSession"> json Form Data of a Session </param>
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Meditation Session data
+        ///     or
+        ///     HEADER: 400 (BAD REQUEST)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MeditationSessionData/AddSession
+        /// </example>
         [ResponseType(typeof(MeditationSession))]
         [HttpPost]
         public IHttpActionResult AddSession(MeditationSession meditationSession)
@@ -113,7 +157,18 @@ namespace MediationApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = meditationSession.SessionID }, meditationSession);
         }
 
-        // POST: api/MeditationSessionData/DeleteSession/5
+        /// <summary>
+        ///     Deletes a session from the meditationsessions table within the database
+        /// </summary>
+        /// <param name="id"> Session Id </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MeditationSessionData/DeleteSession/5
+        /// </example>
         [ResponseType(typeof(MeditationSession))]
         [HttpPost]
         public IHttpActionResult DeleteSession(int id)
