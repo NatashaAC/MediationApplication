@@ -43,6 +43,34 @@ namespace MediationApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of Meditation Sessions table related to a Mantra IID
+        /// </summary>
+        /// <returns> List of Meditation Sessions </returns>
+        /// <param name="id"> Mantra ID </param>
+        /// <example>
+        ///     GET: api/MeditationSessionData/ListSessionsForMantras/2
+        /// </example>
+        [HttpGet]
+        public IEnumerable<MeditationSessionDto> ListSessionsForMantras(int id)
+        {
+            List<MeditationSession> MeditationSessions = db.MeditationSessions.Where(ms => ms.MantraID == id).ToList();
+            List<MeditationSessionDto> MeditationSessionDtos = new List<MeditationSessionDto>();
+
+            MeditationSessions.ForEach(Session => MeditationSessionDtos.Add(new MeditationSessionDto()
+            {
+                SessionID = Session.SessionID,
+                SessionDate = Session.SessionDate,
+                SessionStartTime = Session.SessionStartTime,
+                SessionEndTime = Session.SessionEndTime,
+                SessionDuration = Session.SessionDuration,
+                MantraID = Session.MantraID,
+                MantraName = Session.Mantra.MantraName
+            }));
+
+            return MeditationSessionDtos;
+        }
+
+        /// <summary>
         ///     Returns the data of a specific Meditation Session based on the Session id
         /// </summary>
         /// <param name="id"> Meditation Session Id </param>

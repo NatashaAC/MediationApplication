@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<MediationApplication.Models.MeditationSessionDto>
+
 @{
     ViewBag.Title = "Create";
 }
@@ -8,7 +9,12 @@
 <form action="/JournalEntry/Create" method="POST">
     <div>
         <label id="session">Session</label>
-        <input id="session" type="number" name="SessionID" />
+        <select id="session" type="number" name="SessionID">
+            @foreach (var session in Model)
+            {
+                <option value="@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</option>
+            }
+        </select>
     </div>
     <div>
         <label>Where did you meditate?</label>

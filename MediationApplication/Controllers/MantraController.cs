@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using MediationApplication.Models;
+using MediationApplication.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace MediationApplication.Controllers
@@ -41,6 +42,8 @@ namespace MediationApplication.Controllers
         // GET: Mantra/Details/5
         public ActionResult Details(int id)
         {
+            DetailsSession ViewModel = new DetailsSession();
+
             // Objective: Communicate with mantra data api to retrieve a list of mantras
             // curl https://localhost:44316/api/MantraData/FindMantra/{id}
 
@@ -51,10 +54,22 @@ namespace MediationApplication.Controllers
 
             MantraDto SelectedMantra = response.Content.ReadAsAsync<MantraDto>().Result;
             // Debug.WriteLine("Name of selected mantra -> " + SelectedMantra.MantraName);
+            ViewModel.SelectedMantra = SelectedMantra;
 
             // See a list of mantras that are in the same category
 
-            return View(SelectedMantra);
+            // Objective: Communicate with Meditation Session  Data Api to RETRIEVE a Journal Entry relate to Session Id
+            // curl https://localhost:44316/api/MeditationSessionData/ListSessionsForMantras/{id}
+            // GET: api/MeditationSessionData/ListSessionsForMantras/2
+            url = "MeditationSessionData/ListSessionsForMantras/" + id;
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<MeditationSessionDto> RelatedSessions = response.Content.ReadAsAsync<IEnumerable<MeditationSessionDto>>().Result;
+
+            ViewModel.RelatedSessions = RelatedSessions;
+            
+
+            return View(ViewModel);
         }
 
         // GET: MeditationSession/Error

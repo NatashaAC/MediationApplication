@@ -1,11 +1,20 @@
-﻿@model MediationApplication.Models.MantraDto
+﻿@model MediationApplication.Models.ViewModels.DetailsSession
 
 @{
     ViewBag.Title = "Details";
 }
 
 <a href="/Mantra/List">Back to List</a>
-<a href="/Mantra/Edit/@Model.MantraID">Update Mantra</a>
-<a href="/Mantra/DeleteConfirmation/@Model.MantraID">Delete</a>
+<a href="/Mantra/Edit/@Model.SelectedMantra.MantraID">Update Mantra</a>
+<a href="/Mantra/DeleteConfirmation/@Model.SelectedMantra.MantraID">Delete</a>
 
-<h2>@Model.MantraName</h2>
+<h2 class="h2 text-center">@Model.SelectedMantra.MantraName</h2>
+
+<div>
+    <h3>Meditation Sessions that used this Mantra</h3>
+    
+    @foreach(var session in Model.RelatedSessions)
+    {
+        <a href="@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a>
+    }
+</div>

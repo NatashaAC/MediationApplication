@@ -44,17 +44,13 @@ namespace MediationApplication.Controllers
         {
             // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
             // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
-
             string url = "MeditationSessionData/FindSession/" + id;
-            HttpResponseMessage response = client.GetAsync(url).Result;
 
+            HttpResponseMessage response = client.GetAsync(url).Result;
             // Debug.WriteLine("The status code is " + response.StatusCode);
 
             MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
             // Debug.WriteLine("Date of Session -> " + SelectedSession.SessionDate);
-            // Debug.WriteLine("Duration of Session -> " + SelectedSession.SessionDuration);
-
-            // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry 
 
             return View(SelectedSession);
         }
@@ -113,6 +109,8 @@ namespace MediationApplication.Controllers
         // GET: MeditationSession/Edit/5
         public ActionResult Edit(int id)
         {
+            UpdateSession ViewModel = new UpdateSession();
+
             // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
             // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
             string url = "MeditationSessionData/FindSession/" + id;
@@ -120,8 +118,19 @@ namespace MediationApplication.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
+            ViewModel.SelectedSession = SelectedSession;
 
-            return View(SelectedSession);
+            // Objective: Communicate with the Mantra Data Api to RETRIEVE a list of Mantras
+            // curl https://localhost:44316/api/MantraData/ListMantras
+            // GET: api/MantraData/ListMantras
+            url = "MantraData/ListMantras";
+
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<MantraDto> MantraOptions = response.Content.ReadAsAsync<IEnumerable<MantraDto>>().Result;
+            ViewModel.MantraOptions = MantraOptions;
+
+            return View(ViewModel);
         }
 
         // POST: MeditationSession/Update/5

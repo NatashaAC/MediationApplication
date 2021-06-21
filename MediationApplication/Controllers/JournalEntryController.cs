@@ -68,7 +68,16 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/New
         public ActionResult New()
         {
-            return View();
+            // Objective: Communicate with Meditation Session Data api to RETRIEVE a list of Sessions
+            // curl https://localhost:44316/api/MeditationSessionData/ListSessions
+            // Get api/MeditationSessionData/ListSessions 
+            string url = "MeditationSessionData/ListSessions";
+
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            IEnumerable<MeditationSessionDto> SessionOptions = response.Content.ReadAsAsync<IEnumerable<MeditationSessionDto>>().Result;
+
+            return View(SessionOptions);
         }
 
         // POST: JournalEntry/Create
