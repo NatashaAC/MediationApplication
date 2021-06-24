@@ -35,7 +35,38 @@ textarea {
     background-color: #12664F;
 }
 
-.sessionBtn {
+.subNav {
+    padding: 20px 0;
+}
+
+.deleteLink {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #A0709E;
+    float: right;
+    margin-right: 25px;
+    border: 2px solid #A0709E;
+}
+
+.deleteLink:hover {
+    background-color: #ffffff;
+    color: #A0709E;
+}
+
+.updateLink {
+    font-size: 16px;
+    float: right;
+}
+
+.backLink {
+    color: #61B000;
+    font-size: 18px;
+}
+ .backLink:hover {
+     color: #2DC2BD;
+ }
+
+.sessionBtn, .updateLink {
     background-color: #61B000;
     color: #ffffff;
 }
@@ -45,9 +76,9 @@ textarea {
     color: #ffffff;
 }
 
-.mediBtn:hover, .sessionBtn:hover {
+.mediBtn:hover, .sessionBtn:hover, .updateLink:hover {
     background-color: #FFAC99;
-    color: #12664F;
+    color: #61B000;
 }
 
 .jumbotron {
@@ -59,6 +90,11 @@ textarea {
 
 .jumbotronTxt {
     width: 65%;
+}
+
+.sessionDiv {
+    padding:25px; 
+    border-bottom: 1px solid #808080;
 }
 
 h2 {

@@ -4,9 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/JournalEntry/List">Back to list</a>
-<a href="/JournalEntry/Edit/@Model.JournalEntryID">Update Journal Entry</a>
-<a href="/JournalEntry/DeleteConfirmation/@Model.JournalEntryID">Delete</a>
+<nav class="subNav">
+    <a class="backLink" href="/MeditationSession/List">Back to List</a>
+    <a class="btn updateLink" href="/JournalEntry/Edit/@Model.JournalEntryID">Update</a>
+    <a class="btn deleteLink" href="/JournalEntry/DeleteConfirmation/@Model.JournalEntryID">Delete</a>
+</nav>
 
 <h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
 <h3><em>Duration - @Model.SessionDuration</em></h3>

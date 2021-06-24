@@ -4,9 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/Mantra/List">Back to List</a>
-<a href="/Mantra/Edit/@Model.SelectedMantra.MantraID">Update Mantra</a>
-<a href="/Mantra/DeleteConfirmation/@Model.SelectedMantra.MantraID">Delete</a>
+<div class="subNav">
+    <a class="btn backLink" href="/Mantra/List">Back to List</a>
+    <a class="btn updateLink" href="/Mantra/Edit/@Model.SelectedMantra.MantraID">Update</a>
+    <a class="btn deleteLink" href="/Mantra/DeleteConfirmation/@Model.SelectedMantra.MantraID">Delete</a>
+</div>
 
 <h2 class="h2 text-center">@Model.SelectedMantra.MantraName</h2>
 

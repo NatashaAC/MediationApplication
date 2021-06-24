@@ -4,25 +4,27 @@
     ViewBag.Title = "Show";
 }
 
-<nav style="margin-top: 20px;">
-    <a style="margin-right: 30px;" href="/MeditationSession/List">Back to list</a>
-    <a style="margin-right: 30px;" href="/MeditationSession/Edit/@Model.SelectedSession.SessionID">Update</a>
-    <a style="color: red; float: right;" href="/MeditationSession/DeleteConfirmation/@Model.SelectedSession.SessionID">Delete</a>
+<nav class="subNav">
+    <a class="backLink" href="/MeditationSession/List">Back to List</a>
+    <a class="btn updateLink" href="/MeditationSession/Edit/@Model.SelectedSession.SessionID">Update</a>
+    <a class="btn deleteLink" href="/MeditationSession/DeleteConfirmation/@Model.SelectedSession.SessionID">Delete</a>
 </nav>
 
-<div class="text-center" style="padding:25px; border-bottom: 1px solid #808080">
+<div class="text-center sessionDiv">
     <h2>@Model.SelectedSession.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
     <p>Meditated from @Model.SelectedSession.SessionStartTime.ToString("hh:mm") to @Model.SelectedSession.SessionEndTime.ToString("hh:mm")</p>
     <p>Duration: @Model.SelectedSession.SessionDuration</p>
 </div>
-<div style="display: inline-block; margin: 50px;"">
-    <h3 class="h4">Related Journal Entry</h3>
-    @foreach(var entry in Model.RelatedEntry)
-    {
-        <a href="/JournalEntry/Details/@entry.JournalEntryID">Entry for - @entry.SessionDate.ToString("MMM dd, yyyy")</a>
-    }
-</div>
-<div style="display: inline-block; margin: 50px;">
-    <h3>Mantra</h3>
-    <p>@Model.SelectedSession.MantraName</p>
+<div class="row">
+    <div class="col">
+        <h3 class="h4">Related Journal Entry</h3>
+        @foreach (var entry in Model.RelatedEntry)
+        {
+            <a href="/JournalEntry/Details/@entry.JournalEntryID">Entry for - @entry.SessionDate.ToString("MMM dd, yyyy")</a>
+        }
+    </div>
+    <div class="col">
+        <h3>Mantra</h3>
+        <p>@Model.SelectedSession.MantraName</p>
+    </div>
 </div>
