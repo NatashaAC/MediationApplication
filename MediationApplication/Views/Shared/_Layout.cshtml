@@ -9,18 +9,18 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navBg">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar hamburgerBar"></span>
+                    <span class="icon-bar hamburgerBar"></span>
+                    <span class="icon-bar hamburgerBar"></span>
                 </button>
-                @Html.ActionLink("Meditation Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Meditation Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand logo" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navLinks">
                     <li>@Html.ActionLink("Sessions", "List", "MeditationSession")</li>
                     <li>@Html.ActionLink("Journal Entries", "List", "JournalEntry")</li>
                     <li>@Html.ActionLink("Mantras", "List", "Mantra")</li>
@@ -33,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - This ASP.NET Application was created for HTTP5204 Mobile Development</p>
         </footer>
     </div>
 

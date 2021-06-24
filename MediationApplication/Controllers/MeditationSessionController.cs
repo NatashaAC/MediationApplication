@@ -42,6 +42,8 @@ namespace MediationApplication.Controllers
         // GET: MeditationSession/Details/5
         public ActionResult Details(int id)
         {
+            DetailsSession ViewModel = new DetailsSession();
+
             // Objective: Communicate with Meditation Session Data Api to RETRIEVE a Session
             // curl https://localhost:44316/api/MeditationSessionData/FindSession/{id}
             string url = "MeditationSessionData/FindSession/" + id;
@@ -51,8 +53,19 @@ namespace MediationApplication.Controllers
 
             MeditationSessionDto SelectedSession = response.Content.ReadAsAsync<MeditationSessionDto>().Result;
             // Debug.WriteLine("Date of Session -> " + SelectedSession.SessionDate);
+            ViewModel.SelectedSession = SelectedSession;
 
-            return View(SelectedSession);
+            // Objective: Communicate with Journal Entry Data Api to RETRIEVE a Journal Entry related to a Session Id
+            // curl https://localhost:44316/api/JournalEntryData/FindEntryForSession/{id}
+            // GET: api/MeditationSessionData/ListSessionsForMantras/2
+            url = "JournalEntryData/FindEntryForSession/" + id;
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<JournalEntryDto> RelatedEntry = response.Content.ReadAsAsync<IEnumerable<JournalEntryDto>>().Result;
+
+            ViewModel.RelatedEntry = RelatedEntry;
+
+            return View(ViewModel);
         }
 
         // GET: MeditationSession/Error

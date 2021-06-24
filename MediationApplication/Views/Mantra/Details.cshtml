@@ -1,4 +1,4 @@
-﻿@model MediationApplication.Models.ViewModels.DetailsSession
+﻿@model MediationApplication.Models.ViewModels.DetailsMantra
 
 @{
     ViewBag.Title = "Details";
@@ -10,11 +10,11 @@
 
 <h2 class="h2 text-center">@Model.SelectedMantra.MantraName</h2>
 
-<div>
-    <h3>Meditation Sessions that used this Mantra</h3>
+<div style="margin-top: 100px;">
+    <h3 class="h4">Meditation Sessions that used this Mantra</h3>
     
     @foreach(var session in Model.RelatedSessions)
     {
-        <a href="@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a>
+        <a href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a>
     }
 </div>

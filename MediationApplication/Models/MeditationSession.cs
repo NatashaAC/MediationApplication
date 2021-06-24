@@ -11,13 +11,9 @@ namespace MediationApplication.Models
     {
         [Key]
         public int SessionID { get; set; }
-
         public DateTime SessionDate { get; set; }
-
         public DateTime SessionStartTime { get; set; }
-
         public DateTime SessionEndTime { get; set; }
-
         public int SessionDuration { get; set; }
 
         // A meditation session uses one mantra
@@ -30,17 +26,13 @@ namespace MediationApplication.Models
     public class MeditationSessionDto
     {
         public int SessionID { get; set; }
-
         public DateTime SessionDate { get; set; }
-
         public DateTime SessionStartTime { get; set; }
 
         public DateTime SessionEndTime { get; set; }
-
         public int SessionDuration { get; set; }
 
         public int MantraID { get; set; }
-
         public string MantraName { get; set; }
     }
 }

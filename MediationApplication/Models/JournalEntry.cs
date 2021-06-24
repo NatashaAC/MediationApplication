@@ -31,9 +31,8 @@ namespace MediationApplication.Models
         public string MoodAfter { get; set; }
         public string Thoughts { get; set; }
 
-        [DataType(DataType.Date)]
+        public int SessionID { get; set; }
         public DateTime SessionDate { get; set; }
-
         public int SessionDuration { get; set; }
     }
 }

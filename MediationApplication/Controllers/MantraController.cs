@@ -42,7 +42,7 @@ namespace MediationApplication.Controllers
         // GET: Mantra/Details/5
         public ActionResult Details(int id)
         {
-            DetailsSession ViewModel = new DetailsSession();
+            DetailsMantra ViewModel = new DetailsMantra();
 
             // Objective: Communicate with mantra data api to retrieve a list of mantras
             // curl https://localhost:44316/api/MantraData/FindMantra/{id}
@@ -58,7 +58,7 @@ namespace MediationApplication.Controllers
 
             // See a list of mantras that are in the same category
 
-            // Objective: Communicate with Meditation Session  Data Api to RETRIEVE a Journal Entry relate to Session Id
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a List Sessions related to Mantra Id
             // curl https://localhost:44316/api/MeditationSessionData/ListSessionsForMantras/{id}
             // GET: api/MeditationSessionData/ListSessionsForMantras/2
             url = "MeditationSessionData/ListSessionsForMantras/" + id;

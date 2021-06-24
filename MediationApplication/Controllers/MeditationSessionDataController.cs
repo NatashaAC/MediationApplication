@@ -43,7 +43,7 @@ namespace MediationApplication.Controllers
         }
 
         /// <summary>
-        ///     Returns a list of Meditation Sessions table related to a Mantra IID
+        ///     Gathers a list of Meditation Sessions related to a Mantra ID
         /// </summary>
         /// <returns> List of Meditation Sessions </returns>
         /// <param name="id"> Mantra ID </param>
@@ -71,7 +71,7 @@ namespace MediationApplication.Controllers
         }
 
         /// <summary>
-        ///     Returns the data of a specific Meditation Session based on the Session id
+        ///     Gathers the data of a specific Meditation Session based on the Session id
         /// </summary>
         /// <param name="id"> Meditation Session Id </param>
         /// <returns>

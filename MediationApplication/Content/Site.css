@@ -22,3 +22,45 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navBg {
+    background-color: #2DC2BD;
+}
+
+.logo {
+    color: #12664F;
+}
+
+.hamburgerBar {
+    background-color: #12664F;
+}
+
+.sessionBtn {
+    background-color: #61B000;
+    color: #ffffff;
+}
+
+.mediBtn {
+    background-color: #2DC2BD;
+    color: #ffffff;
+}
+
+.mediBtn:hover, .sessionBtn:hover {
+    background-color: #FFAC99;
+    color: #12664F;
+}
+
+.jumbotron {
+    background-image: url("image/Meditation_Isometric.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: right;
+}
+
+.jumbotronTxt {
+    width: 65%;
+}
+
+h2 {
+    color: #12664F;
+}

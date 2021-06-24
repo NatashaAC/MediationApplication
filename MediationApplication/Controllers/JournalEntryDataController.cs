@@ -37,6 +37,34 @@ namespace MediationApplication.Controllers
             return JournalEntryDtos;
         }
 
+        /// <summary>
+        ///     Gathers a Journal Entry related to a Sesssion ID
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <returns>
+        ///     GET: api/JournalEntryData/FindEntryForSession/6
+        /// </returns>
+        [HttpGet]
+        public IEnumerable<JournalEntryDto> FindEntryForSession(int id)
+        {
+            List<JournalEntry> JournalEntries = db.JournalEntries.Where(je => je.SessionID == id).ToList();
+            List<JournalEntryDto> JournalEntryDtos = new List<JournalEntryDto>();
+
+            JournalEntries.ForEach(JournalEntry => JournalEntryDtos.Add(new JournalEntryDto()
+            {
+                JournalEntryID = JournalEntry.JournalEntryID,
+                Location = JournalEntry.Location,
+                MoodBefore = JournalEntry.MoodBefore,
+                MoodAfter = JournalEntry.MoodAfter,
+                Thoughts = JournalEntry.Thoughts,
+                SessionID = JournalEntry.SessionID,
+                SessionDate = JournalEntry.MeditationSession.SessionDate,
+                SessionDuration = JournalEntry.MeditationSession.SessionDuration
+            }));
+
+            return JournalEntryDtos;
+        }
+
         // GET: api/JournalEntryData/FindEntry/4
         [ResponseType(typeof(JournalEntryDto))]
         [HttpGet]

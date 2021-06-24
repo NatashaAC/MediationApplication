@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +9,10 @@ namespace MediationApplication.Models.ViewModels
     {
         // This ViewModel is a Class which stores info that we need to present to /MeditationSession/DetialsSession/{id}
 
-        // Existing Mantra Information
-        public MantraDto SelectedMantra { get; set; }
+        // Exisiting Session Information
+        public MeditationSessionDto SelectedSession { get; set; }
 
-        // Related Sessions
-        public IEnumerable<MeditationSessionDto> RelatedSessions { get; set; }
+        // Related Journal Entry
+        public IEnumerable<JournalEntryDto> RelatedEntry { get; set; }
     }
 }
