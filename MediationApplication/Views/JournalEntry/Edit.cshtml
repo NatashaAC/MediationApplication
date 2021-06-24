@@ -20,10 +20,14 @@
     <div>
         <label>Where did you meditate?</label>
         <div>
-            <input id="indoor" type="radio" name="Location" value="@Model.Location" />
+            @{
+                string indoor = Model.Location == "Indoors" ? "checked" : "";
+                string outdoor = Model.Location == "Outdoors" ? "checked" : "";
+            }
+            <input id="indoor" type="radio" name="Location" value="Indoors" @indoor />
             <label for="indoor">Indoors</label>
 
-            <input id="outdoor" type="radio" name="Location" value="@Model.Location" />
+            <input id="outdoor" type="radio" name="Location" value="Outdoors" @outdoor  />
             <label for="outdoor">Outdoors</label>
         </div>
     </div>

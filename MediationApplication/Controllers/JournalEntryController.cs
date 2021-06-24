@@ -119,6 +119,8 @@ namespace MediationApplication.Controllers
         [HttpPost]
         public ActionResult Update(int id, JournalEntry journalEntry)
         {
+            Debug.WriteLine("Location -> " + journalEntry.Location);
+
             // Objective: Communicate with Journal Entry Data api to UPDATE a Entry
             // curl -H "Content-Type:application/json" -d "" https://localhost:44316/api/JournalEntryData/UpdateEntry/{id}
             string url = "JournalEntryData/UpdateEntry/" + id;
