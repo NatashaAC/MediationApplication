@@ -3,12 +3,15 @@
     ViewBag.Title = "DeleteConfirmation";
 }
 
-<a href="/Mantra/List">Cancel</a>
+<nav class="subNav">
+    <a class="backLink" href="/Mantra/List">Cancel</a>
+</nav>
 
-<div>
-    <p>Are you sure you want to delete @Model.MantraName</p>
+<div class="delConfirm">
+    <h2>Confirm Deletion</h2>
+    <p class="delPara">Are you sure you want to delete <strong class="delTxt">@Model.MantraName</strong>?</p>
+
+    <form action="/Mantra/Delete/@Model.MantraID" method="POST">
+        <button class="btn deleteBtn" type="submit">Confirm Delete</button>
+    </form>
 </div>
-
-<form action="/Mantra/Delete/@Model.MantraID" method="POST">
-    <button type="submit">Confirm Delete</button>
-</form>

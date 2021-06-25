@@ -39,6 +39,17 @@ textarea {
     padding: 20px 0;
 }
 
+.formBtn {
+    background-color: #2DC2BD;
+    color: #ffffff;
+}
+
+.formBtn:hover {
+    background-color: #ffffff;
+    color: #2DC2BD;
+    border: 2px solid #2DC2BD;
+}
+
 .deleteLink {
     font-size: 16px;
     color: #ffffff;
@@ -48,9 +59,32 @@ textarea {
     border: 2px solid #A0709E;
 }
 
-.deleteLink:hover {
+.deleteBtn {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #A0709E;
+    border: 2px solid #A0709E;
+}
+
+.deleteLink:hover, .deleteBtn:hover {
     background-color: #ffffff;
     color: #A0709E;
+}
+
+.delConfirm {
+    text-align: center;
+    padding: 50px;
+    border: 2px dashed #A0709E;
+}
+
+.delPara {
+    margin: 25px 0;
+    font-size: 18px;
+}
+
+.delTxt {
+    color: #A0709E;
+    font-style: italic;
 }
 
 .updateLink {
@@ -62,6 +96,7 @@ textarea {
     color: #61B000;
     font-size: 18px;
 }
+
  .backLink:hover {
      color: #2DC2BD;
  }

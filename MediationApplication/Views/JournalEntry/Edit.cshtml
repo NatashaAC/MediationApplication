@@ -1,4 +1,4 @@
-﻿@model MediationApplication.Models.JournalEntryDto
+﻿@model MediationApplication.Models.ViewModels.UpdateEntry
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,22 +7,38 @@
 
 <a href="/JournalEntry/List">Back to list</a>
 
-<h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+<h2>Journal Entry for @Model.SelectedEntry.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
 
-<form action="/JournalEntry/Update/@Model.JournalEntryID" method="POST">
+<div>
+    <label>Select Meditation Session</label>
+    <select name="SessionID">
+        @foreach (var sessions in Model.SessionOptions)
+        {
+            var selected = "";
+
+            if (sessions.SessionID == Model.SelectedEntry.SessionID)
+            {
+                selected = "selected";
+            }
+            <option value="@sessions.SessionID" @selected>@sessions.SessionDate.ToString("MMMM dd, yyyy")</option>
+        }
+    </select>
+</div>
+
+<form action="/JournalEntry/Update/@Model.SelectedEntry.JournalEntryID" method="POST">
     <div style="display: none;">
-        <input type="text" name="JournalEntryID" value="@Model.JournalEntryID" />
+        <input type="text" name="JournalEntryID" value="@Model.SelectedEntry.JournalEntryID" />
     </div>
     <div>
         <label>Session Date</label>
-        <input type="date" name="SessionDate" value="@Model.SessionDate.ToString("yyyy-MM-dd")" />
+        <input type="date" name="SessionDate" value="@Model.SelectedEntry.SessionDate.ToString("yyyy-MM-dd")" />
     </div>
     <div>
         <label>Where did you meditate?</label>
         <div>
             @{
-                string indoor = Model.Location == "Indoors" ? "checked" : "";
-                string outdoor = Model.Location == "Outdoors" ? "checked" : "";
+                string indoor = Model.SelectedEntry.Location == "Indoors" ? "checked" : "";
+                string outdoor = Model.SelectedEntry.Location == "Outdoors" ? "checked" : "";
             }
             <input id="indoor" type="radio" name="Location" value="Indoors" @indoor />
             <label for="indoor">Indoors</label>
@@ -33,17 +49,17 @@
     </div>
     <div>
         <label for="moodbefore">How did you feel before meditating?</label>
-        <input id="moodbefore" type="text" name="MoodBefore" value="@Model.MoodBefore" />
+        <input id="moodbefore" type="text" name="MoodBefore" value="@Model.SelectedEntry.MoodBefore" />
     </div>
     <div>
         <label for="moodafter">How do you feel now?</label>
-        <input id="moodafter" type="text" name="MoodAfter" value="@Model.MoodAfter" />
+        <input id="moodafter" type="text" name="MoodAfter" value="@Model.SelectedEntry.MoodAfter" />
     </div>
     <div>
         <div>
             <label for="thoughts">What's on your mind?</label>
         </div>
-        <textarea id="thoughts" cols="40" rows="10" name="Thoughts">@Model.Thoughts</textarea>
+        <textarea id="thoughts" cols="40" rows="10" name="Thoughts">@Model.SelectedEntry.Thoughts</textarea>
     </div>
-    <button type="submit">Update Entry</button>
+    <button class="btn updateLink"  type="submit">Update Entry</button>
 </form>

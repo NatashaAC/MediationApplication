@@ -32,11 +32,17 @@
         </select>
     </div>
     <div>
-        <label for="mantra">Mantra</label>
+        <label>Mantra</label>
         <select name="MantraID">
             @foreach (var mantras in Model.MantraOptions)
             {
-                <option value="@mantras.MantraID">@mantras.MantraName</option>
+                var selected = "";
+
+                if (mantras.MantraID == Model.SelectedSession.MantraID)
+                {
+                    selected = "selected";
+                }
+                <option value="@mantras.MantraID" @selected>@mantras.MantraName</option>
             }
         </select>
     </div>

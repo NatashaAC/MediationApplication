@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using MediationApplication.Models;
+using MediationApplication.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace MediationApplication.Controllers
@@ -105,22 +106,31 @@ namespace MediationApplication.Controllers
         // GET: JournalEntry/Edit/5
         public ActionResult Edit(int id)
         {
+            UpdateEntry ViewModel = new UpdateEntry();
+            
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
             // curl https://localhost:44316/api/JournalEntryData/FindEntry/{id}
             string url = "JournalEntryData/FindEntry/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
             JournalEntryDto SelectedEntry = response.Content.ReadAsAsync<JournalEntryDto>().Result;
+            ViewModel.SelectedEntry = SelectedEntry;
 
-            return View(SelectedEntry);
+            // Objective: Communicate with Meditation Session Data Api to RETRIEVE a list of Sessions
+            // curl https://localhost:44316/api/MeditationSessionData/ListSessions
+            url = "MeditationSessionData/ListSessions/";
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<MeditationSessionDto> SessionOptions = response.Content.ReadAsAsync<IEnumerable<MeditationSessionDto>>().Result;
+            ViewModel.SessionOptions = SessionOptions;
+
+            return View(ViewModel);
         }
 
         // POST: JournalEntry/Update/5
         [HttpPost]
         public ActionResult Update(int id, JournalEntry journalEntry)
         {
-            Debug.WriteLine("Location -> " + journalEntry.Location);
-
             // Objective: Communicate with Journal Entry Data api to UPDATE a Entry
             // curl -H "Content-Type:application/json" -d "" https://localhost:44316/api/JournalEntryData/UpdateEntry/{id}
             string url = "JournalEntryData/UpdateEntry/" + id;
@@ -131,9 +141,15 @@ namespace MediationApplication.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
 
-            client.PostAsync(url, content);
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            return RedirectToAction("List");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            } else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         // GET: JournalEntry/DeleteConfirmation/5
