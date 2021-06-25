@@ -7,15 +7,17 @@
     <a class="btn sessionBtn" href="/MeditationSession/New">Add Session</a>
 </nav>
 
-<h2>Meditation Sessions</h2>
+<h2 class="text-center">Meditation Sessions</h2>
 
 <div>
     @foreach (var session in Model)
     {
-        <h3><a href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a></h3>
-        <div>
-            <p>@session.SessionStartTime.ToString("hh:mm tt") to @session.SessionEndTime.ToString("hh:mm tt")</p>
-            <p>Duration: @session.SessionDuration</p>
+        <div class="card">
+            <h3><a class="card-title" href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a></h3>
+            <div class="card-body">
+                <p>Click on the button below to see more details.</p>
+                <a class="btn btn-sm listBtn" href="/MeditationSession/Details/@session.SessionID">View Details &rArr;</a>
+            </div>
         </div>
     }
 </div>

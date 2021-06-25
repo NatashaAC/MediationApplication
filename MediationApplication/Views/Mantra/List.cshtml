@@ -7,11 +7,11 @@
     <a class="btn sessionBtn" href="/Mantra/New">Add Mantra</a>
 </nav>
 
-<h2>Mantras</h2>
+<h2 class="text-center">Mantras</h2>
 
 <div>
     @foreach( var mantra in Model )
     {
-        <h3><a href="/Mantra/Details/@mantra.MantraID">@mantra.MantraName</a></h3>
+        <h3><a class="card-title" href="/Mantra/Details/@mantra.MantraID">@mantra.MantraName</a></h3>
     }
 </div>

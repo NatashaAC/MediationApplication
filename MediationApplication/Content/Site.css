@@ -116,6 +116,17 @@ textarea {
     color: #61B000;
 }
 
+.listBtn {
+    color: #ffffff;
+    background-color: #61B000;
+}
+
+.listBtn:hover {
+    color: #61B000;
+    background-color: #ffffff;
+    border: 2px solid #61B000;
+}
+
 .jumbotron {
     background-image: url("image/Meditation_Isometric.png");
     background-repeat: no-repeat;
@@ -128,8 +139,25 @@ textarea {
 }
 
 .sessionDiv {
-    padding:25px; 
+    padding: 25px; 
     border-bottom: 1px solid #808080;
+}
+
+.card {
+    margin: 5px;
+    padding: 15px;
+    display: inline-block;
+    width: 350px;
+    border: 2px solid #61B000;
+    border-radius: 10px;
+}
+
+.card-title {
+    color: #3129A3;
+}
+
+.card-title:hover {
+    color: #61B000;
 }
 
 h2 {

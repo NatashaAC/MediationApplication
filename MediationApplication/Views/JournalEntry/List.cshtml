@@ -7,13 +7,18 @@
     <a class="btn sessionBtn" href="/JournalEntry/New">Add Entry</a>
 </nav>
 
-<h2>Journal Entries</h2>
+<h2 class="text-center">Journal Entries</h2>
 
 <div>
     @foreach( var entry in Model )
     {
-        <div>
-            <h3>Journal Entry for <a href="/JournalEntry/Details/@entry.JournalEntryID"><em>@entry.SessionDate.ToString("dddd, MMMM dd, yyyy")</em></a></h3>
+    <div class="card">
+        <p>Journal Entry Date:</p>
+        <h3><a class="card-title" href="/JournalEntry/Details/@entry.JournalEntryID"><em>@entry.SessionDate.ToString("dddd, MMMM dd, yyyy")</em></a></h3>
+        <div class="card-body">
+            <p>Click on the button below to see more details.</p>
+            <a class="btn btn-sm listBtn" href="/JournalEntry/Details/@entry.JournalEntryID">View Details &rArr;</a>
         </div>
+    </div>
     }
 </div>
