@@ -160,6 +160,11 @@ textarea {
     color: #61B000;
 }
 
+.searchBar {
+    float: right;
+    clear: both;
+}
+
 h2 {
     color: #12664F;
 }

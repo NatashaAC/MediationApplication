@@ -5,6 +5,10 @@
 
 <nav class="subNav">
     <a class="btn sessionBtn" href="/Mantra/New">Add Mantra</a>
+    <form class="searchBar" action="/Mantra/List" method="get">
+        <input type="text" name="" />
+        <button class="btn formBtn" type="submit">Search</button>
+    </form>
 </nav>
 
 <h2 class="text-center">Mantras</h2>
@@ -12,6 +16,6 @@
 <div>
     @foreach( var mantra in Model )
     {
-        <h3><a class="card-title" href="/Mantra/Details/@mantra.MantraID">@mantra.MantraName</a></h3>
+        <h3 class="text-center"><a class="card-title" href="/Mantra/Details/@mantra.MantraID">@mantra.MantraName</a></h3>
     }
 </div>
