@@ -32,6 +32,8 @@ namespace MediationApplication.Models
 
         public DbSet<JournalEntry> JournalEntries { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

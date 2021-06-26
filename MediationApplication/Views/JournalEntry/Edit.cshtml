@@ -3,47 +3,42 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-<a href="/JournalEntry/List">Back to list</a>
+<nav class="subNav">
+    <a class="backLink" href="/JournalEntry/List">Back to list</a>
+</nav>
 
 <h2>Journal Entry for @Model.SelectedEntry.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
 
-<div>
-    <label>Select Meditation Session</label>
-    <select name="SessionID">
-        @foreach (var sessions in Model.SessionOptions)
-        {
-            var selected = "";
-
-            if (sessions.SessionID == Model.SelectedEntry.SessionID)
-            {
-                selected = "selected";
-            }
-            <option value="@sessions.SessionID" @selected>@sessions.SessionDate.ToString("MMMM dd, yyyy")</option>
-        }
-    </select>
-</div>
-
 <form action="/JournalEntry/Update/@Model.SelectedEntry.JournalEntryID" method="POST">
+    <div>
+        <label>Select Meditation Session</label>
+        <select name="SessionID">
+            @foreach (var sessions in Model.SessionOptions)
+            {
+                var selected = "";
+
+                if (sessions.SessionID == Model.SelectedEntry.SessionID)
+                {
+                    selected = "selected";
+                }
+                <option value="@sessions.SessionID" @selected>@sessions.SessionDate.ToString("dddd, MMMM dd, yyyy")</option>
+            }
+        </select>
+    </div>
     <div style="display: none;">
         <input type="text" name="JournalEntryID" value="@Model.SelectedEntry.JournalEntryID" />
-    </div>
-    <div>
-        <label>Session Date</label>
-        <input type="date" name="SessionDate" value="@Model.SelectedEntry.SessionDate.ToString("yyyy-MM-dd")" />
     </div>
     <div>
         <label>Where did you meditate?</label>
         <div>
             @{
-                string indoor = Model.SelectedEntry.Location == "Indoors" ? "checked" : "";
-                string outdoor = Model.SelectedEntry.Location == "Outdoors" ? "checked" : "";
+                string indoor = Model.SelectedEntry.Location == "indoors" ? "checked" : "";
+                string outdoor = Model.SelectedEntry.Location == "outdoors" ? "checked" : "";
             }
-            <input id="indoor" type="radio" name="Location" value="Indoors" @indoor />
+            <input id="indoor" type="radio" name="Location" value="indoors" @indoor />
             <label for="indoor">Indoors</label>
 
-            <input id="outdoor" type="radio" name="Location" value="Outdoors" @outdoor  />
+            <input id="outdoor" type="radio" name="Location" value="outdoors" @outdoor />
             <label for="outdoor">Outdoors</label>
         </div>
     </div>
@@ -61,5 +56,5 @@
         </div>
         <textarea id="thoughts" cols="40" rows="10" name="Thoughts">@Model.SelectedEntry.Thoughts</textarea>
     </div>
-    <button class="btn updateLink"  type="submit">Update Entry</button>
+    <button class="btn updateLink" type="submit">Update Entry</button>
 </form>

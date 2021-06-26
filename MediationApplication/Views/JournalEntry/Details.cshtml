@@ -10,12 +10,21 @@
     <a class="btn deleteLink" href="/JournalEntry/DeleteConfirmation/@Model.JournalEntryID">Delete</a>
 </nav>
 
-<h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
-<h3><em>Duration - @Model.SessionDuration</em></h3>
+<div class="container-fluid">
+    <h2>@Model.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+    <h3 class="text-center"><em>Duration - @Model.SessionDuration</em></h3>
 
-<div>
-    <p>Meditation Location: @Model.Location</p>
-    <p>Feeling(s) before meditating: @Model.MoodBefore</p>
-    <p>Feeling(s) after meditating: @Model.MoodAfter</p>
-    <p>Thoughts and Ideas: @Model.Thoughts</p>
+    <div>
+        <h4>Meditation Location:</h4>
+        <p class="entryTxt">@Model.Location</p>
+
+        <h4>Feeling(s) before meditating:</h4>
+        <p class="entryTxt">@Model.MoodBefore</p>
+
+        <h4>Feeling(s) after meditating:</h4>
+        <p class="entryTxt">@Model.MoodAfter</p>
+
+        <h4>Thoughts and Ideas:</h4>
+        <p class="entryTxt">@Model.Thoughts</p>
+    </div>
 </div>

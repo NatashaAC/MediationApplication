@@ -181,6 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JournalEntryController.cs" />
     <Compile Include="Controllers\JournalEntryDataController.cs" />
@@ -228,8 +229,17 @@
     <Compile Include="Migrations\202105292134238_journalentry-meditationsession.Designer.cs">
       <DependentUpon>202105292134238_journalentry-meditationsession.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106260527373_categories.cs" />
+    <Compile Include="Migrations\202106260527373_categories.Designer.cs">
+      <DependentUpon>202106260527373_categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106261805481_mantras-categories.cs" />
+    <Compile Include="Migrations\202106261805481_mantras-categories.Designer.cs">
+      <DependentUpon>202106261805481_mantras-categories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JournalEntry.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -257,6 +267,7 @@
     <Content Include="jsondata\mantra.json" />
     <Content Include="jsondata\session.json" />
     <Content Include="jsondata\entry.json" />
+    <Content Include="jsondata\category.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -364,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105292134238_journalentry-meditationsession.resx">
       <DependentUpon>202105292134238_journalentry-meditationsession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106260527373_categories.resx">
+      <DependentUpon>202106260527373_categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106261805481_mantras-categories.resx">
+      <DependentUpon>202106261805481_mantras-categories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -187,6 +187,7 @@ namespace MediationApplication.Controllers
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
+
             } else
             {
                 return RedirectToAction("Error");

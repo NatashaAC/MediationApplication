@@ -12,7 +12,8 @@ namespace MediationApplication.Models
         public int MantraID { get; set; }
         public string MantraName { get; set; }
 
-        // Add foriegnkey for categories
+        // A Mantra can fall under many Categories
+        public ICollection<Category> Categories { get; set; }
     }
 
     public class MantraDto

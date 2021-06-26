@@ -15,16 +15,18 @@
     <p>Meditated from @Model.SelectedSession.SessionStartTime.ToString("hh:mm") to @Model.SelectedSession.SessionEndTime.ToString("hh:mm")</p>
     <p>Duration: @Model.SelectedSession.SessionDuration</p>
 </div>
-<div class="row">
-    <div class="col">
-        <h3 class="h4">Related Journal Entry</h3>
-        @foreach (var entry in Model.RelatedEntry)
-        {
-            <a href="/JournalEntry/Details/@entry.JournalEntryID">Entry for - @entry.SessionDate.ToString("MMM dd, yyyy")</a>
-        }
-    </div>
-    <div class="col">
-        <h3>Mantra</h3>
-        <p>@Model.SelectedSession.MantraName</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Related Journal Entry</h3>
+            @foreach (var entry in Model.RelatedEntry)
+            {
+                <a class="card-title" href="/JournalEntry/Details/@entry.JournalEntryID">Entry for @entry.SessionDate.ToString("MMM dd, yyyy")</a>
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Mantra</h3>
+            <p>@Model.SelectedSession.MantraName</p>
+        </div>
     </div>
 </div>
