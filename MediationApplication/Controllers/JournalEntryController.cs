@@ -18,17 +18,38 @@ namespace MediationApplication.Controllers
 
         static JournalEntryController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                UseCookies = false
+            };
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44316/api/");
         }
 
+        private void GetApplicationCookie()
+        {
+            string token = "";
+
+            client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            if (token != "") client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
+        }
+
         // GET: JournalEntry/List
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        [Authorize]
         public ActionResult List()
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE a List of Entries
             // curl https://localhost:44316/api/JournalEntryData/ListEntries
 
@@ -44,8 +65,12 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
             // curl https://localhost:44316/api/JournalEntryData/FindEntry/{id}
 
@@ -67,8 +92,12 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/New
+        [Authorize]
         public ActionResult New()
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Meditation Session Data api to RETRIEVE a list of Sessions
             // curl https://localhost:44316/api/MeditationSessionData/ListSessions
             // Get api/MeditationSessionData/ListSessions 
@@ -83,8 +112,12 @@ namespace MediationApplication.Controllers
 
         // POST: JournalEntry/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(JournalEntry journalEntry)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Debug.WriteLine("The date of new session -> " + journalEntry.JournalEntryID);
 
             // Objective: Communicate with Journal entry data api to add a new entry
@@ -104,8 +137,12 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             UpdateEntry ViewModel = new UpdateEntry();
             
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
@@ -129,8 +166,12 @@ namespace MediationApplication.Controllers
 
         // POST: JournalEntry/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, JournalEntry journalEntry)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Journal Entry Data api to UPDATE a Entry
             // curl -H "Content-Type:application/json" -d "" https://localhost:44316/api/JournalEntryData/UpdateEntry/{id}
             string url = "JournalEntryData/UpdateEntry/" + id;
@@ -153,8 +194,12 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/DeleteConfirmation/5
+        [Authorize]
         public ActionResult DeleteConfirmation(int id)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Journal Entry Data Api to RETRIEVE an Entry
             // curl https://localhost:44316/api/JournalEntryData/FindEntry/{id}
             string url = "JournalEntryData/FindEntry/" + id;
@@ -168,8 +213,12 @@ namespace MediationApplication.Controllers
 
         // POST: JournalEntry/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            // Get Token Credentials
+            GetApplicationCookie();
+
             // Objective: Communicate with Journal Entry Data Api to DELETE an Entry
             // curl -d "" https://localhost:44316/api/JournalEntryData/DeleteEntry/{id}
             string url = "JournalEntryData/DeleteEntry/" + id;

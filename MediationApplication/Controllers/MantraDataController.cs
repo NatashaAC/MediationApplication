@@ -87,6 +87,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateMantra(int id, Mantra mantra)
         {
             if (!ModelState.IsValid)
@@ -135,6 +136,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(Mantra))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddMantra(Mantra mantra)
         {
             if (!ModelState.IsValid)
@@ -162,6 +164,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(Mantra))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteMantra(int id)
         {
             Mantra mantra = db.Mantras.Find(id);

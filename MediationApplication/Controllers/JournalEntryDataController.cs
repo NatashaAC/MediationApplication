@@ -18,6 +18,7 @@ namespace MediationApplication.Controllers
 
         // GET: api/JournalEntryData/ListEntries
         [HttpGet]
+        [Authorize]
         public IEnumerable<JournalEntryDto> ListEntries()
         {
             List<JournalEntry> JournalEntries = db.JournalEntries.ToList();
@@ -45,6 +46,7 @@ namespace MediationApplication.Controllers
         ///     GET: api/JournalEntryData/FindEntryForSession/6
         /// </returns>
         [HttpGet]
+        [Authorize]
         public IEnumerable<JournalEntryDto> FindEntryForSession(int id)
         {
             List<JournalEntry> JournalEntries = db.JournalEntries.Where(je => je.SessionID == id).ToList();
@@ -68,6 +70,7 @@ namespace MediationApplication.Controllers
         // GET: api/JournalEntryData/FindEntry/4
         [ResponseType(typeof(JournalEntryDto))]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult FindEntry(int id)
         {
             JournalEntry JournalEntry = db.JournalEntries.Find(id);
@@ -93,6 +96,7 @@ namespace MediationApplication.Controllers
         // POST: api/JournalEntryData/UpdateEntry/4
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateEntry(int id, JournalEntry JournalEntry)
         {
             if (!ModelState.IsValid)
@@ -129,6 +133,7 @@ namespace MediationApplication.Controllers
         // POST: api/JournalEntryData/AddEntry
         [ResponseType(typeof(JournalEntry))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddEntry(JournalEntry JournalEntry)
         {
             if (!ModelState.IsValid)
@@ -145,6 +150,7 @@ namespace MediationApplication.Controllers
         // POST: api/JournalEntryData/DeleteEntry/5
         [ResponseType(typeof(JournalEntry))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteEntry(int id)
         {
             JournalEntry JournalEntry = db.JournalEntries.Find(id);

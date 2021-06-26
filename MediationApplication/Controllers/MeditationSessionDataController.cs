@@ -24,6 +24,7 @@ namespace MediationApplication.Controllers
         ///     GET: api/MeditationSessionData/ListSessions
         /// </example>
         [HttpGet]
+        [Authorize]
         public IEnumerable<MeditationSessionDto> ListSessions()
         {
             List<MeditationSession> MeditationSessions = db.MeditationSessions.ToList();
@@ -85,6 +86,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(MeditationSessionDto))]
         [HttpGet]
+        [Authorize]
         public IHttpActionResult FindSession(int id)
         {
             MeditationSession Session = db.MeditationSessions.Find(id);
@@ -124,6 +126,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateSession(int id, MeditationSession meditationSession)
         {
             if (!ModelState.IsValid)
@@ -172,6 +175,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(MeditationSession))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddSession(MeditationSession meditationSession)
         {
             if (!ModelState.IsValid)
@@ -199,6 +203,7 @@ namespace MediationApplication.Controllers
         /// </example>
         [ResponseType(typeof(MeditationSession))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteSession(int id)
         {
             MeditationSession meditationSession = db.MeditationSessions.Find(id);
