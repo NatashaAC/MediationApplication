@@ -3,7 +3,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Update a Mantra</h2>
 
 <form action="/Mantra/Update/@Model.MantraID" method="POST">
     <div style="display: none;">
@@ -13,5 +13,5 @@
         <label>Mantra Name</label>
         <input type="text" name="MantraName" value="@Model.MantraName" />
     </div>
-    <button type="submit">Update Mantra</button>
+    <button class="btn updateBtn" type="submit">Update Mantra</button>
 </form>

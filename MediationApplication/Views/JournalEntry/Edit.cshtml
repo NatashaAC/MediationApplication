@@ -7,7 +7,7 @@
     <a class="backLink" href="/JournalEntry/List">Back to list</a>
 </nav>
 
-<h2>Journal Entry for @Model.SelectedEntry.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
+<h2>Update Journal Entry for @Model.SelectedEntry.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
 
 <form action="/JournalEntry/Update/@Model.SelectedEntry.JournalEntryID" method="POST">
     <div>
@@ -56,5 +56,5 @@
         </div>
         <textarea id="thoughts" cols="40" rows="10" name="Thoughts">@Model.SelectedEntry.Thoughts</textarea>
     </div>
-    <button class="btn updateLink" type="submit">Update Entry</button>
+    <button class="btn updateBtn" type="submit">Update Entry</button>
 </form>

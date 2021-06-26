@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update a Session</h2>
+<h2>Update Meditation Session for @Model.SelectedSession.SessionDate.ToString("MMM dd, yyyy")</h2>
 
 <form action="/Meditationsession/Update/@Model.SelectedSession.SessionID" method="POST">
     <div style="display:none;">
@@ -46,5 +46,5 @@
             }
         </select>
     </div>
-    <button type="submit">Update</button>
+    <button class="btn updateBtn" type="submit">Update</button>
 </form>

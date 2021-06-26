@@ -20,7 +20,13 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 300px;
+    margin: 15px 0;
+}
+
+label {
+    margin-right: 5px;
+    font-size: 16px;
 }
 
 .navBg {
@@ -101,7 +107,7 @@ textarea {
      color: #2DC2BD;
  }
 
-.sessionBtn, .updateLink {
+.sessionBtn, .updateLink, .updateBtn {
     background-color: #61B000;
     color: #ffffff;
 }
@@ -111,7 +117,7 @@ textarea {
     color: #ffffff;
 }
 
-.mediBtn:hover, .sessionBtn:hover, .updateLink:hover {
+.mediBtn:hover, .sessionBtn:hover, .updateLink:hover, .updateBtn:hover {
     background-color: #FFAC99;
     color: #61B000;
 }
