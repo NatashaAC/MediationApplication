@@ -181,6 +181,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CategoryDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JournalEntryController.cs" />
@@ -193,49 +194,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105291800431_InitialCreate.cs" />
-    <Compile Include="Migrations\202105291800431_InitialCreate.Designer.cs">
-      <DependentUpon>202105291800431_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105291845315_meditationsessions.cs" />
-    <Compile Include="Migrations\202105291845315_meditationsessions.Designer.cs">
-      <DependentUpon>202105291845315_meditationsessions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105291937072_mantras.cs" />
-    <Compile Include="Migrations\202105291937072_mantras.Designer.cs">
-      <DependentUpon>202105291937072_mantras.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105291941220_journalentries.cs" />
-    <Compile Include="Migrations\202105291941220_journalentries.Designer.cs">
-      <DependentUpon>202105291941220_journalentries.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105292021252_mantras1.cs" />
-    <Compile Include="Migrations\202105292021252_mantras1.Designer.cs">
-      <DependentUpon>202105292021252_mantras1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105292025166_journalentries1.cs" />
-    <Compile Include="Migrations\202105292025166_journalentries1.Designer.cs">
-      <DependentUpon>202105292025166_journalentries1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105292026483_journalentries2.cs" />
-    <Compile Include="Migrations\202105292026483_journalentries2.Designer.cs">
-      <DependentUpon>202105292026483_journalentries2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105292043388_meditationsession-mantra.cs" />
-    <Compile Include="Migrations\202105292043388_meditationsession-mantra.Designer.cs">
-      <DependentUpon>202105292043388_meditationsession-mantra.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105292134238_journalentry-meditationsession.cs" />
-    <Compile Include="Migrations\202105292134238_journalentry-meditationsession.Designer.cs">
-      <DependentUpon>202105292134238_journalentry-meditationsession.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106260527373_categories.cs" />
-    <Compile Include="Migrations\202106260527373_categories.Designer.cs">
-      <DependentUpon>202106260527373_categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106261805481_mantras-categories.cs" />
-    <Compile Include="Migrations\202106261805481_mantras-categories.Designer.cs">
-      <DependentUpon>202106261805481_mantras-categories.cs</DependentUpon>
+    <Compile Include="Migrations\202106270312037_Initial.cs" />
+    <Compile Include="Migrations\202106270312037_Initial.Designer.cs">
+      <DependentUpon>202106270312037_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,6 +292,12 @@
     <Content Include="Views\JournalEntry\Error.cshtml" />
     <Content Include="Views\JournalEntry\Edit.cshtml" />
     <Content Include="Views\JournalEntry\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\Category\New.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Category\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,38 +316,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105291800431_InitialCreate.resx">
-      <DependentUpon>202105291800431_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105291845315_meditationsessions.resx">
-      <DependentUpon>202105291845315_meditationsessions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105291937072_mantras.resx">
-      <DependentUpon>202105291937072_mantras.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105291941220_journalentries.resx">
-      <DependentUpon>202105291941220_journalentries.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105292021252_mantras1.resx">
-      <DependentUpon>202105292021252_mantras1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105292025166_journalentries1.resx">
-      <DependentUpon>202105292025166_journalentries1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105292026483_journalentries2.resx">
-      <DependentUpon>202105292026483_journalentries2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105292043388_meditationsession-mantra.resx">
-      <DependentUpon>202105292043388_meditationsession-mantra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105292134238_journalentry-meditationsession.resx">
-      <DependentUpon>202105292134238_journalentry-meditationsession.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106260527373_categories.resx">
-      <DependentUpon>202106260527373_categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106261805481_mantras-categories.resx">
-      <DependentUpon>202106261805481_mantras-categories.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106270312037_Initial.resx">
+      <DependentUpon>202106270312037_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

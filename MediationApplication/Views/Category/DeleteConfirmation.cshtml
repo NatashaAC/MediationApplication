@@ -1,0 +1,18 @@
+﻿@model MediationApplication.Models.CategoryDto
+
+@{
+    ViewBag.Title = "DeleteConfirmation";
+}
+
+<nav class="subNav">
+    <a class="backLink" href="/Category/List">Cancel</a>
+</nav>
+
+<div class="delConfirm">
+    <h2>Confirm Deletion</h2>
+    <p class="delPara">Are you sure you want to delete <strong class="delTxt">@Model.CategoryName</strong>?</p>
+
+    <form action="/Category/Delete/@Model.CategoryID" method="POST">
+        <button class="btn deleteBtn" type="submit">Confirm Delete</button>
+    </form>
+</div>

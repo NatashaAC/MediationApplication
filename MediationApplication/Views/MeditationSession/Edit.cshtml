@@ -4,6 +4,10 @@
     ViewBag.Title = "Edit";
 }
 
+<nav class="subNav">
+    <a class="backLink" href="/MeditationSession/List">Cancel</a>
+</nav>
+
 <h2>Update Meditation Session for @Model.SelectedSession.SessionDate.ToString("MMM dd, yyyy")</h2>
 
 <form action="/Meditationsession/Update/@Model.SelectedSession.SessionID" method="POST">
@@ -16,11 +20,11 @@
     </div>
     <div>
         <label for="startTime">Start Time</label>
-        <input id="startTime" type="time" name="SessionStartTime" value="@Model.SelectedSession.SessionStartTime.ToString("hh:mm")" />
+        <input id="startTime" type="time" name="SessionStartTime" value="@Model.SelectedSession.SessionStartTime.ToString("HH:mm")" />
     </div>
     <div>
         <label for="endTime">End Time</label>
-        <input id="endTime" type="time" name="SessionEndTime" value="@Model.SelectedSession.SessionEndTime.ToString("hh:mm")"/>
+        <input id="endTime" type="time" name="SessionEndTime" value="@Model.SelectedSession.SessionEndTime.ToString("HH:mm")"/>
     </div>
     <div>
         <label for="duration">Duration</label>

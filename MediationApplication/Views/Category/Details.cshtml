@@ -1,0 +1,23 @@
+﻿@model MediationApplication.Models.CategoryDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<nav class="subNav">
+    <a class="backLink" href="/Category/List">Back to List</a>
+    <a class="btn updateLink" href="/Category/Edit/@Model.CategoryID">Update</a>
+    <a class="btn deleteLink" href="/Category/DeleteConfirmation/@Model.CategoryID">Delete</a>
+</nav>
+
+<div class="container-fluid">
+    <h2>@Model.CategoryName</h2>
+    <div>
+        <h4>Description:</h4>
+        <p class="entryTxt">@Model.CategoryDescription</p>
+    </div>
+    <div>
+        <h4>Colour:</h4>
+        <p style="background-color: @Model.CategoryColour; color: #ffffff; width: 80px; padding: 5px;" class="entryTxt">@Model.CategoryColour</p>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model MediationApplication.Models.CategoryDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<nav class="subNav">
+    <a class="backLink" href="/Category/List">Cancel</a>
+</nav>
+
+<h2>Update a Mantra</h2>
+
+<form class="container-fluid" action="/Category/Update/@Model.CategoryID" method="POST">
+    <div style="display: none;">
+        <input type="number" name="CategoryID" value="@Model.CategoryID" />
+    </div>
+    <div>
+        <label for="categoryname">Name</label>
+        <input id="categoryname" type="text" name="CategoryName" value="@Model.CategoryName" />
+    </div>
+    <div>
+        <div>
+            <label for="categorydescription">Description</label>
+        </div>
+        <textarea id="categorydescription" cols="40" rows="5">@Model.CategoryDescription</textarea>
+    </div>
+    <div>
+        <label for="categorycolour">Colour</label>
+        <input id="categorycolour" type="color" name="CategoryColour" value="@Model.CategoryColour" />
+    </div>
+    <button class="btn formBtn" type="submit">Update Category</button>
+</form>

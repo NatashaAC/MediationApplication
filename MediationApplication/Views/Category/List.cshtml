@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MediationApplication.Models.CategoryDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<nav class="subNav">
+    <a class="btn sessionBtn" href="/Category/New">Add Category</a>
+</nav>
+
+<h2>Categories</h2>
+
+<div>
+    @foreach(var category in Model) 
+    { 
+        <a href="/Category/Details/@category.CategoryID">
+            <div class="card" style="background-color: @category.CategoryColour">
+                <h3 class="card-title text-center">@category.CategoryName</h3>
+            </div>
+        </a>
+    }
+</div>
+

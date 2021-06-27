@@ -20,5 +20,4 @@ add journal entries for those sessions, and search for mantras to use during the
 - [ ] Add validation to forms
 
 ### Bugs 
-- [X] Fix issue with radio buttons
 - [ ] Fix issue with wrong start time and end time being logged into database

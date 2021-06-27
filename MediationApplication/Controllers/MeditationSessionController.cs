@@ -103,6 +103,7 @@ namespace MediationApplication.Controllers
             if(response.IsSuccessStatusCode)
             {
                 return View(ViewModel);
+
             } else
             {
                 return RedirectToAction("Error");

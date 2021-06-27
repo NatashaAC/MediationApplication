@@ -45,7 +45,7 @@ namespace MediationApplication.Controllers
         // GET: Mantra/List
         public ActionResult List(string searchkey)
         {
-            // Objective: Communicate with mantra data api to retrieve a list of mantras
+            // Objective: Communicate with mantra data api to RETRIEVE a list of mantras
             // curl https://localhost:44316/api/MantraData/ListMantras
             string url = "MantraData/ListMantras";
 
@@ -71,7 +71,7 @@ namespace MediationApplication.Controllers
         {
             DetailsMantra ViewModel = new DetailsMantra();
 
-            // Objective: Communicate with mantra data api to retrieve a list of mantras
+            // Objective: Communicate with mantra data api to RETRIEVE a list of mantras
             // curl https://localhost:44316/api/MantraData/FindMantra/{id}
 
             string url = "MantraData/FindMantra/" + id;
@@ -130,7 +130,7 @@ namespace MediationApplication.Controllers
 
             // Debug.WriteLine("The name of the mantra -> " + mantra.MantraName);
 
-            // Objective: Communicate with mantra data api to add a new mantra
+            // Objective: Communicate with Mantra Data Api to add a new Mantra
             // curl -H "Content-Type:application/json" -d @mantra.json https://localhost:44316/api/MantraData/AddMantra
             string url = "MantraData/AddMantra";
 
@@ -216,7 +216,7 @@ namespace MediationApplication.Controllers
             GetApplicationCookie();
 
             // Objective: Communicate with Mantra Data Api to DELETE a Mantra
-            // curl -d "" https://localhost:44316/api/MantraData/FindMantra/{id}
+            // curl https://localhost:44316/api/MantraData/FindMantra/{id}
             string url = "MantraData/FindMantra/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;

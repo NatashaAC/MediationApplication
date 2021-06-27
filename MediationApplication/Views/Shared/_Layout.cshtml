@@ -24,6 +24,7 @@
                     <li>@Html.ActionLink("Sessions", "List", "MeditationSession")</li>
                     <li>@Html.ActionLink("Journal Entries", "List", "JournalEntry")</li>
                     <li>@Html.ActionLink("Mantras", "List", "Mantra")</li>
+                    <li>@Html.ActionLink("Categories", "List", "Category")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -32,7 +33,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-center">
             <p>&copy; @DateTime.Now.Year - This ASP.NET Application was created for HTTP5204 Mobile Development</p>
         </footer>
     </div>

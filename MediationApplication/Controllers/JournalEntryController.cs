@@ -131,9 +131,16 @@ namespace MediationApplication.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
 
-            client.PostAsync(url, content);
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            return RedirectToAction("List");
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+
+            } else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         // GET: JournalEntry/Edit/5

@@ -3,9 +3,13 @@
     ViewBag.Title = "Create";
 }
 
+<nav class="subNav">
+    <a class="btn sessionBtn" href="/Mantra/List">Cancel</a>
+</nav>
+
 <h2>Add a Mantra</h2>
 
-<form class="container-fluid"" action="/Mantra/Create" method="POST">
+<form class="container-fluid" action="/Mantra/Create" method="POST">
     <div>
         <label for="mantraname">Name</label>
         <input id="mantraname" type="text" name="MantraName" />

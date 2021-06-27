@@ -12,7 +12,7 @@
 
 <div class="text-center sessionDiv">
     <h2>@Model.SelectedSession.SessionDate.ToString("dddd, MMMM dd, yyyy")</h2>
-    <p>Meditated from @Model.SelectedSession.SessionStartTime.ToString("hh:mm") to @Model.SelectedSession.SessionEndTime.ToString("hh:mm")</p>
+    <p>Meditated from @Model.SelectedSession.SessionStartTime.ToString("hh:mm tt") to @Model.SelectedSession.SessionEndTime.ToString("hh:mm tt")</p>
     <p>Duration: @Model.SelectedSession.SessionDuration</p>
 </div>
 <div class="container-fluid">

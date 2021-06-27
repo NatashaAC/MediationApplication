@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add a Category</h2>
+
+<form class="container-fluid" action="/Category/Create" method="POST">
+    <div>
+        <label for="categoryname">Name</label>
+        <input id="categoryname" type="text" name="CategoryName" />
+    </div>
+    <div>
+        <label for="categorydescription">Description</label>
+        <input id="categorydescription" type="text" name="CategoryDescription" />
+    </div>
+    <div>
+        <label for="categorycolour">Colour</label>
+        <input id="categorycolour" type="color" name="CategoryColour" />
+    </div>
+    <button class="btn formBtn" type="submit">Add Category</button>
+</form>
