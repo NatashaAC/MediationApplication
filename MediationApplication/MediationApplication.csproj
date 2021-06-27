@@ -206,6 +206,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Mantra.cs" />
     <Compile Include="Models\MeditationSession.cs" />
+    <Compile Include="Models\ViewModels\DetailsCategory.cs" />
     <Compile Include="Models\ViewModels\DetailsMantra.cs" />
     <Compile Include="Models\ViewModels\DetailsSession.cs" />
     <Compile Include="Models\ViewModels\UpdateEntry.cs" />

@@ -39,6 +39,95 @@ namespace MediationApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of Mantras for a specific Category
+        /// </summary>
+        /// <returns> List of Mantras related to a specific category id </returns>
+        /// <param name="id"> Category ID </param>
+        /// <example>
+        ///     GET: api/MantraData/ListMantrasForCategory/3 -> Mantra Object, Mantra Object, etc...
+        /// </example>
+        [HttpGet]
+        public IEnumerable<MantraDto> ListMantrasForCategory(int id)
+        {
+            // All Mantras that have Category IDs that match with id
+            List<Mantra> Mantras = db.Mantras.Where(
+                m => m.Categories.Any(
+                c => c.CategoryID == id
+                )).ToList();
+            List<MantraDto> MantraDtos = new List<MantraDto>();
+
+            Mantras.ForEach(Mantra => MantraDtos.Add(new MantraDto()
+            {
+                MantraID = Mantra.MantraID,
+                MantraName = Mantra.MantraName
+            }));
+
+            return MantraDtos;
+        }
+
+        /// <summary>
+        ///     Assigns a specific category with a specific mantra
+        /// </summary>
+        /// <param name="mantraid"> Mantra ID </param>
+        /// <param name="categoryid"> Category ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MantraData/AssignMantraToCategory/13/3
+        /// </example>
+        [HttpPost] 
+        [Route("api/MantraData/AssignMantraToCategory/{mantraid}/{categoryid}")]
+        public IHttpActionResult AssignMantraToCategory(int mantraid, int categoryid)
+        {
+            Mantra SelectedMantra = db.Mantras.Include(m => m.Categories).Where(m => m.MantraID == mantraid).FirstOrDefault();
+            Category SelectedCategory = db.Categories.Find(categoryid);
+
+            if(SelectedMantra == null || SelectedCategory == null)
+            {
+                return NotFound();
+            }
+
+            SelectedMantra.Categories.Add(SelectedCategory);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
+        ///     UnAssigns a specific category from a specific mantra
+        /// </summary>
+        /// <param name="mantraid"> Mantra ID </param>
+        /// <param name="categoryid"> Category ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        ///     POST: api/MantraData/UnAssignMantraToCategory/10/3
+        /// </example>
+        [HttpPost]
+        [Route("api/MantraData/UnAssignMantraToCategory/{mantraid}/{categoryid}")]
+        public IHttpActionResult UnAssignMantraToCategory(int mantraid, int categoryid)
+        {
+            Mantra SelectedMantra = db.Mantras.Include(m => m.Categories).Where(m => m.MantraID == mantraid).FirstOrDefault();
+            Category SelectedCategory = db.Categories.Find(categoryid);
+
+            if (SelectedMantra == null || SelectedCategory == null)
+            {
+                return NotFound();
+            }
+
+            SelectedMantra.Categories.Remove(SelectedCategory);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
         ///     Returns the data of a specific Mantra based on the mantra id
         /// </summary>
         /// <param name="id"> Mantra Id </param>

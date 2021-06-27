@@ -10,13 +10,39 @@
     <a class="btn deleteLink" href="/Mantra/DeleteConfirmation/@Model.SelectedMantra.MantraID">Delete</a>
 </div>
 
-<h2 class="h2 text-center">@Model.SelectedMantra.MantraName</h2>
-
-<div style="margin-top: 100px;">
-    <h3 class="h4">Meditation Sessions that used this Mantra</h3>
+<div class="container-fluid text-center" style="padding-bottom: 100px; border-bottom: 2px solid #2DC2BD;">
+    <h2>@Model.SelectedMantra.MantraName</h2>
     
-    @foreach(var session in Model.RelatedSessions)
-    {
-        <a href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a>
-    }
+    <div>
+        @foreach(var categories in Model.RelatedCategories)
+        {
+            <a style="background-color: @categories.CategoryColour; color: #ffffff;" class="btn" href="/Category/Details/@categories.CategoryID">@categories.CategoryName</a>
+            <a style="margin-right: 10px; color: @categories.CategoryColour;" href="/Mantra/UnAssign/@Model.SelectedMantra.MantraID?CategoryID=@categories.CategoryID">[x]</a>
+        }
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Meditation Sessions that used this Mantra</h3>
+
+            @foreach (var session in Model.RelatedSessions)
+            {
+                <a class="card-title" href="/MeditationSession/Details/@session.SessionID">@session.SessionDate.ToString("dddd, MMMM dd, yyyy")</a>
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Assign Category</h3>
+            <form action="/Mantra/Assign/@Model.SelectedMantra.MantraID" method="POST">
+                <select name="CategoryID">
+                    @foreach(var category in Model.UnassignedCategories) 
+                    { 
+                        <option value="@category.CategoryID">@category.CategoryName</option>
+                    }
+                </select>
+                <button class="btn formBtn" type="submit">Assign Category</button>
+            </form>
+        </div>
+    </div>
 </div>

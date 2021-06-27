@@ -83,7 +83,6 @@ namespace MediationApplication.Controllers
             // Debug.WriteLine("Name of selected mantra -> " + SelectedMantra.MantraName);
             ViewModel.SelectedMantra = SelectedMantra;
 
-            // See a list of mantras that are in the same category
 
             // Objective: Communicate with Meditation Session Data Api to RETRIEVE a List Sessions related to Mantra Id
             // curl https://localhost:44316/api/MeditationSessionData/ListSessionsForMantras/{id}
@@ -93,8 +92,26 @@ namespace MediationApplication.Controllers
 
             IEnumerable<MeditationSessionDto> RelatedSessions = response.Content.ReadAsAsync<IEnumerable<MeditationSessionDto>>().Result;
             ViewModel.RelatedSessions = RelatedSessions;
-            
-            if(response.IsSuccessStatusCode)
+
+            // Objective: Communicate with Category Data Api to RETRIEVE a list of Categories related to specific Mantra
+            // curl https://localhost:44316/api/CategoryData/ListCategoriesForMantra/{id}
+            url = "CategoryData/ListCategoriesForMantra/" + id;
+
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<CategoryDto> RelatedCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+            ViewModel.RelatedCategories = RelatedCategories;
+
+            // Objective: Communicate with Category Data Api to RETRIEVE a list of Categories not assigned to specific Mantra
+            // curl https://localhost:44316/api/CategoryData/ListCategoriesNotAssignedToMantra/{id}
+            url = "CategoryData/ListCategoriesNotAssignedToMantra/" + id;
+
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<CategoryDto> UnassignedCategories = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+            ViewModel.UnassignedCategories = UnassignedCategories;
+
+            if (response.IsSuccessStatusCode)
             {
                 return View(ViewModel);
 
@@ -102,6 +119,42 @@ namespace MediationApplication.Controllers
             {
                 return RedirectToAction("Error");
             }
+        }
+
+        // POST: Mantra/Assign/{mantraid}
+        [HttpPost]
+        public ActionResult Assign(int id, int CategoryID)
+        {
+            Debug.WriteLine("Assigning mantra to -> " + id + "to category -> " + CategoryID);
+
+            // Objective: Communicate with Mantra Data Api to ASSIGN Mantra to Category
+            // curl -d "" -v https://localhost:44316/api/MantraData/AssignMantraToCategory/13/3
+            string url = "MantraData/AssignMantraToCategory/" + id + "/" + CategoryID;
+
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
+        // GET: Mantra/UnAssign/{id}?CategoryID=={categoryid}
+        [HttpGet]
+        public ActionResult UnAssign(int id, int CategoryID)
+        {
+            Debug.WriteLine("UnAssigning mantra to -> " + id + "to category -> " + CategoryID);
+
+            // Objective: Communicate with Mantra Data Api to UNASSIGN Mantra to Category
+            // curl -d "" -v https://localhost:44316/api/MantraData/UnAssignMantraToCategory/13/3
+            string url = "MantraData/UnAssignMantraToCategory/" + id + "/" + CategoryID;
+
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
         }
 
         // GET: MeditationSession/Error

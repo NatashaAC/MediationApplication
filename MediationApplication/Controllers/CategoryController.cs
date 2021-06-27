@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using MediationApplication.Models;
+using MediationApplication.Models.ViewModels;
 using System.Web.Script.Serialization;
 
 namespace MediationApplication.Controllers
@@ -47,6 +48,8 @@ namespace MediationApplication.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
+            DetailsCategory ViewModel = new DetailsCategory();
+
             // Objective: Communicate with Category Data Api to RETRIEVE a Category
             // curl https://localhost:44316/api/CategoryData/FindCategory/{id}
             string url = "CategoryData/FindCategory/" + id;
@@ -56,8 +59,18 @@ namespace MediationApplication.Controllers
 
             CategoryDto SelectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
             // Debug.WriteLine("Data of Category -> " + SelectedCategory);
+            ViewModel.SelectedCategory = SelectedCategory;
 
-            return View(SelectedCategory);
+            // Objective: Communicate with Mantra Data Api to RETRIEVE a list of Mantras for Specific Category
+            // curl https://localhost:44316/api/MantraData/ListMantrasForCategory/{id}
+            url = "MantraData/ListMantrasForCategory/" + id;
+
+            response = client.GetAsync(url).Result;
+
+            IEnumerable<MantraDto> RelatedMantras = response.Content.ReadAsAsync<IEnumerable<MantraDto>>().Result;
+            ViewModel.RelatedMantras = RelatedMantras;
+
+            return View(ViewModel);
         }
 
         // GET: Category/Error

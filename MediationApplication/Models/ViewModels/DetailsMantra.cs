@@ -15,5 +15,11 @@ namespace MediationApplication.Models.ViewModels
 
         // Related Sessions
         public IEnumerable<MeditationSessionDto> RelatedSessions { get; set; }
+
+        // Related Categories
+        public IEnumerable<CategoryDto> RelatedCategories { get; set; }
+
+        // Not Assigned Categories
+        public IEnumerable<CategoryDto> UnassignedCategories { get; set; }
     }
 }

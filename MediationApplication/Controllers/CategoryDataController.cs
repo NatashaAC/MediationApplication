@@ -41,6 +41,62 @@ namespace MediationApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of Categories for a specific Mantra
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns> List of Categories related to a specific mantra id </returns>
+        /// <example>
+        ///     GET: api/CategoryData/ListCategoriesForMantra/6 -> Category Object, Category Object, etc...
+        /// </example>
+        [HttpGet]
+        public IEnumerable<CategoryDto> ListCategoriesForMantra(int id)
+        {
+            List<Category> Categories = db.Categories.Where(
+                c => c.Mantras.Any(
+                m => m.MantraID == id
+                )).ToList();
+            List<CategoryDto> CategoryDtos = new List<CategoryDto>();
+
+            Categories.ForEach(Category => CategoryDtos.Add(new CategoryDto()
+            {
+                CategoryID = Category.CategoryID,
+                CategoryName = Category.CategoryName,
+                CategoryDescription = Category.CategoryDescription,
+                CategoryColour = Category.CategoryColour
+            }));
+
+            return CategoryDtos;
+        }
+
+        /// <summary>
+        ///     Returns a list of Categories
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns> List of Categories not assigned to a specific mantra id </returns>
+        /// <example>
+        ///     GET: api/CategoryData/ListCategoriesNotAssignedToMantra/6 -> Category Object, Category Object, etc...
+        /// </example>
+        [HttpGet]
+        public IEnumerable<CategoryDto> ListCategoriesNotAssignedToMantra(int id)
+        {
+            List<Category> Categories = db.Categories.Where(
+                c => !c.Mantras.Any(
+                m => m.MantraID == id
+                )).ToList();
+            List<CategoryDto> CategoryDtos = new List<CategoryDto>();
+
+            Categories.ForEach(Category => CategoryDtos.Add(new CategoryDto()
+            {
+                CategoryID = Category.CategoryID,
+                CategoryName = Category.CategoryName,
+                CategoryDescription = Category.CategoryDescription,
+                CategoryColour = Category.CategoryColour
+            }));
+
+            return CategoryDtos;
+        }
+
+        /// <summary>
         ///     Returns the data of a specific Category based on the Category ID
         /// </summary>
         /// <param name="id"> Category ID </param>

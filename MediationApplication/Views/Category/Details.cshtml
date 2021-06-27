@@ -1,4 +1,4 @@
-﻿@model MediationApplication.Models.CategoryDto
+﻿@model MediationApplication.Models.ViewModels.DetailsCategory
 
 @{
     ViewBag.Title = "Details";
@@ -6,18 +6,26 @@
 
 <nav class="subNav">
     <a class="backLink" href="/Category/List">Back to List</a>
-    <a class="btn updateLink" href="/Category/Edit/@Model.CategoryID">Update</a>
-    <a class="btn deleteLink" href="/Category/DeleteConfirmation/@Model.CategoryID">Delete</a>
+    <a class="btn updateLink" href="/Category/Edit/@Model.SelectedCategory.CategoryID">Update</a>
+    <a class="btn deleteLink" href="/Category/DeleteConfirmation/@Model.SelectedCategory.CategoryID">Delete</a>
 </nav>
 
 <div class="container-fluid">
-    <h2>@Model.CategoryName</h2>
+    <h2>@Model.SelectedCategory.CategoryName</h2>
     <div>
         <h4>Description:</h4>
-        <p class="entryTxt">@Model.CategoryDescription</p>
+        <p class="entryTxt">@Model.SelectedCategory.CategoryDescription</p>
     </div>
     <div>
         <h4>Colour:</h4>
-        <p style="background-color: @Model.CategoryColour; color: #ffffff; width: 80px; padding: 5px;" class="entryTxt">@Model.CategoryColour</p>
+        <p style="background-color: @Model.SelectedCategory.CategoryColour; color: #ffffff; width: 80px; padding: 5px;" class="entryTxt">@Model.SelectedCategory.CategoryColour</p>
     </div>
+</div>
+
+<div class="container-fluid">
+    <h3>Mantras that fall under this Category</h3>
+    @foreach(var mantras in Model.RelatedMantras) 
+    { 
+        <p><a class="card-title" href="/Mantra/Details/@mantras.MantraID">@mantras.MantraName</a></p>
+    }
 </div>
