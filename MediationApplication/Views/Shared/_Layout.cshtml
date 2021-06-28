@@ -20,11 +20,11 @@
                 @Html.ActionLink("Meditation Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand logo" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navLinks">
-                    <li>@Html.ActionLink("Sessions", "List", "MeditationSession")</li>
-                    <li>@Html.ActionLink("Journal Entries", "List", "JournalEntry")</li>
-                    <li>@Html.ActionLink("Mantras", "List", "Mantra")</li>
-                    <li>@Html.ActionLink("Categories", "List", "Category")</li>
+                <ul class="nav navbar-nav">
+                    <li class="navLinks">@Html.ActionLink("Sessions", "List", "MeditationSession")</li>
+                    <li class="navLinks">@Html.ActionLink("Journal Entries", "List", "JournalEntry")</li>
+                    <li class="navLinks">@Html.ActionLink("Mantras", "List", "Mantra")</li>
+                    <li class="navLinks">@Html.ActionLink("Categories", "List", "Category")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year - This ASP.NET Application was created for HTTP5204 Mobile Development</p>
+            <p>&copy; @DateTime.Now.Year - Meditation Tracker</p>
         </footer>
     </div>
 

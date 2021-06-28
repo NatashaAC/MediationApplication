@@ -13,12 +13,16 @@ add journal entries for those sessions, and search for mantras to use during the
 	*M-M Between Categories and Mantras
 
 ## Features
-- [X] Searchbar for Mantras 
-- [X] Responsive
+- [X] Add, Edit and Delete Sessions, Entries, Mantras and Categories as a Registered User
+- [X] View a List of Sessions and Journal Entries as a Registered User
+- [X] View a List of Mantras and Categories as non-registered User
+- [X] Searchbar for Mantras
+- [X] Assign and UnAssign Mantras to Categories
 - [X] Register and Sign Up
 
 ## Extra Features/Updates
-- [ ] Sort Mantras based on categories
+- [ ] Add filter that sorts Mantras based on categories
+- [ ] Arrange Meditation Sessions and Journal Entries by Date (Descending Order)
 - [ ] Have images related to categories
 - [ ] Create timer for Meditation Session
 - [ ] Add audio/music when using timer

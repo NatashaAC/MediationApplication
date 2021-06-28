@@ -178,6 +178,14 @@ label {
     color: #808080;
 }
 
+.navLinks a {
+    color: #ffffff;
+}
+
+.navLinks a:hover {
+    color: #61B000;
+}
+
 h2 {
     color: #12664F;
     text-align: center;
