@@ -219,7 +219,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\colour_selector.jpg" />
+    <Content Include="Content\image\date_selection.jpg" />
+    <Content Include="Content\image\home.jpg" />
     <Content Include="Content\image\Meditation_Isometric.png" />
+    <Content Include="Content\image\session_selector.jpg" />
+    <Content Include="Content\image\time_selector.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
