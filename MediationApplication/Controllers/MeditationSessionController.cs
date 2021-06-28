@@ -44,6 +44,15 @@ namespace MediationApplication.Controllers
         }
 
         // GET: MeditationSession/List
+        /// <summary>
+        ///     Routes to a dynamically generated "Meditation List" Page. 
+        ///     Gathers information about all the sessions in the database.
+        /// </summary>
+        /// <returns> A dynamic webpage which displays a List of Sessions </returns>
+        /// <example>
+        ///     GET: MeditationSession/List
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult List()
         {
@@ -72,6 +81,22 @@ namespace MediationApplication.Controllers
         }
 
         // GET: MeditationSession/Details/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Meditation Session Details" Page.
+        ///     Gathers information about a specific session from the database.
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     A dynamic webpage which provides the current information of a Session and Entries
+        ///     related to the session.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     GET: MeditationSession/Details/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult Details(int id)
         {
@@ -111,12 +136,30 @@ namespace MediationApplication.Controllers
         }
 
         // GET: MeditationSession/Error
+        /// <summary>
+        ///     Routes to a dynamically generated "Error" Page.
+        /// </summary>
+        /// <returns> A dynamic webpage which provides an Error Message. </returns>
+        /// <example>
+        ///     GET: MeditationSession/Error
+        /// </example>
+        [HttpGet]
         public ActionResult Error()
         {
             return View();
         }
 
         // GET: MeditationSession/New
+        /// <summary>
+        ///     Routes to a dynamically generated "Meditation Session New" Page. 
+        ///     Gathers information about a new Session from a form 
+        ///     that will be added to the database.
+        /// </summary>
+        /// <returns> A dynamic webpage which asks the user for new information regarding a Session as part of a form. </returns>
+        /// <example>
+        ///     GET: MeditationSession/New
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult New()
         {
@@ -142,8 +185,30 @@ namespace MediationApplication.Controllers
         }
 
         // POST: MeditationSession/Create
-        [Authorize]
+        /// <summary>
+        ///    Receives a POST request containing information about a new Meditation Session, 
+        ///    Conveys this information to the AddSession Method, inorder
+        ///    to add the specific Session to the database.
+        ///    Redirects to the "Session List" page.
+        /// </summary>
+        /// <param name="meditationSession"> Meditation Session Object </param>
+        /// <returns> 
+        ///     A dynamic webpage which provides a new Category's information.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     MeditationSession/Create
+        ///     {
+        ///         "SessionDate": "2021-06-01",
+        ///         "SessionStartTime": "1:30:00",
+        ///         "SessionEndTime": "2:30:00",
+        ///         "SessionDuration": 1,
+        ///         "MantraID": 6
+        ///     }
+        /// </example>
         [HttpPost]
+        [Authorize]
         public ActionResult Create(MeditationSession meditationSession)
         {
             // Get Token Credentials
@@ -176,6 +241,17 @@ namespace MediationApplication.Controllers
         }
 
         // GET: MeditationSession/Edit/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Meditation Edit" Page. 
+        ///     That asks the user for new information as part of a form.
+        ///     Gathers information from the MeditationApplication database.
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Session. </returns>
+        /// <example>
+        ///     MeditationSession/Edit/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -214,6 +290,25 @@ namespace MediationApplication.Controllers
         }
 
         // POST: MeditationSession/Update/5
+        /// <summary>
+        ///     Receives a POST request containing information about an existing Meditation Session in the database, 
+        ///     with new values. Conveys this information to the UpdateSession Method, 
+        ///     and redirects to the "Meditation Session List" page.
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <param name="meditationSession"> Meditation Session Object </param>
+        /// <returns> A dynamic webpage which provides the current information of a Session </returns>
+        /// <example>
+        ///     MeditationSession/Update/5
+        ///     {
+        ///         "SessionID": 5,
+        ///         "SessionDate": "2021-06-01",
+        ///         "SessionStartTime": "1:30:00",
+        ///         "SessionEndTime": "2:30:00",
+        ///         "SessionDuration": 1,
+        ///         "MantraID": 6
+        ///     }
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Update(int id, MeditationSession meditationSession)
@@ -243,7 +338,17 @@ namespace MediationApplication.Controllers
             }
         }
 
-        // GET: MeditationSession/DeleteConfirmation/10
+        // GET: MeditationSession/DeleteConfirmation/4
+        /// <summary>
+        ///     Routes to a dynamically generated "Meditation Session DeleteConfirmation" Page. 
+        ///     Gathers information about a specific Session that will be deleted from the database
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Session </returns>
+        /// <example>
+        ///     GET: MeditationSession/DeleteConfirmation/4
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult DeleteConfirmation(int id)
         {
@@ -268,7 +373,18 @@ namespace MediationApplication.Controllers
             }
         }
 
-        // POST: MeditationSession/Delete/10
+        // POST: MeditationSession/Delete/4
+        /// <summary>
+        ///    Receives a POST request containing information about an existing Meditation Session in the database, 
+        ///    Conveys this information to the DeleteSession Method, inorder
+        ///    to remove the specific Session from the database.
+        ///    Redirects to the "Meditation Session List" page.
+        /// </summary>
+        /// <param name="id"> Session ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Session </returns>
+        /// <example>
+        ///     POST: MeditationSession/Delete/4
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Delete(int id)
@@ -277,7 +393,7 @@ namespace MediationApplication.Controllers
             GetApplicationCookie();
 
             // Objective: Communicate with Meditation Session Data Api to DELETE an Entry
-            // curl -d "" https://localhost:44316/api/MantraData/DeleteEntry/{id}
+            // curl -d "" https://localhost:44316/api/MantraData/DeleteSession/{id}
             string url = "MeditationSessionData/DeleteSession/" + id;
 
             HttpContent content = new StringContent("");

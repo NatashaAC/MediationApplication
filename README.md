@@ -8,9 +8,9 @@ For my passion project I created an application where users have the ability to 
 add journal entries for those sessions, and search for mantras to use during their sessions.
 
 ## Entity Model Relationships
-	* 1-1 Between Meditation Sessions and Journal Entries
-	* 1-M Between Mantras and Meditation Sessions
-	* M-M Between Categories and Mantras
+	*1-1 Between Meditation Sessions and Journal Entries
+	*1-M Between Mantras and Meditation Sessions
+	*M-M Between Categories and Mantras
 
 ## Features
 - [X] Searchbar for Mantras 

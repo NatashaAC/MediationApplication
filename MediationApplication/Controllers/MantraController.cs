@@ -43,6 +43,16 @@ namespace MediationApplication.Controllers
         }
 
         // GET: Mantra/List
+        /// <summary>
+        ///     Routes to a dynamically generated "Mantra List" Page.
+        ///     Gathers information about all the mantras in the database.
+        /// </summary>
+        /// <param name="searchkey"> A string that represents a mantra's name </param>
+        /// <returns> A dynamic webpage which displays a List of Mantras </returns>
+        /// <example>
+        ///     GET: Mantra/List
+        /// </example>
+        [HttpGet]
         public ActionResult List(string searchkey)
         {
             // Objective: Communicate with mantra data api to RETRIEVE a list of mantras
@@ -67,6 +77,23 @@ namespace MediationApplication.Controllers
         }
 
         // GET: Mantra/Details/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Mantra Details" Page.
+        ///     Gathers information about a specific Mantra from the database
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     A dynamic webpage which provides the current information of a Mantra.
+        ///     The Categories and Sessions related to the Mantra.
+        ///     The Categories not assigned to the Mantra.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     GET: Mantra/Details/5
+        /// </example>
+        [HttpGet]
         public ActionResult Details(int id)
         {
             DetailsMantra ViewModel = new DetailsMantra();
@@ -121,11 +148,31 @@ namespace MediationApplication.Controllers
             }
         }
 
-        // POST: Mantra/Assign/{mantraid}
+        // POST: Mantra/Assign/{mantraid}/{categoryid}
+        /// <summary>
+        ///    Receives a POST request containing information about an existing Mantra in the database, 
+        ///    Conveys this information to the AssignMantraToCategory Method, inorder
+        ///    to assign a mantra to a category.
+        ///    Redirects to the "Mantra Details" page.
+        /// <param name="id"> Mantra ID </param>
+        /// <param name="CategoryID"> Category ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     A dynamic webpage which provides the current information of a Mantra.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     POST: Mantra/Assign/4/1
+        /// </example>
         [HttpPost]
+        [Authorize]
         public ActionResult Assign(int id, int CategoryID)
         {
-            Debug.WriteLine("Assigning mantra to -> " + id + "to category -> " + CategoryID);
+            // Get Token Credentials
+            GetApplicationCookie();
+
+            // Debug.WriteLine("Assigning mantra to -> " + id + "to category -> " + CategoryID);
 
             // Objective: Communicate with Mantra Data Api to ASSIGN Mantra to Category
             // curl -d "" -v https://localhost:44316/api/MantraData/AssignMantraToCategory/13/3
@@ -136,14 +183,41 @@ namespace MediationApplication.Controllers
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            return RedirectToAction("Details/" + id);
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Details/" + id);
+
+            } else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         // GET: Mantra/UnAssign/{id}?CategoryID=={categoryid}
+        /// <summary>
+        ///    Receives a POST request containing information about an existing Mantra in the database, 
+        ///    Conveys this information to the UnAssignMantraToCategory Method, inorder
+        ///    to unassign a mantra to a category.
+        ///    Redirects to the "Mantra Details" page.
+        /// <param name="id"> Mantra ID </param>
+        /// <param name="CategoryID"> Category ID </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///     A dynamic webpage which provides the current information of a Mantra.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     POST: Mantra/UnAssign/4/1
+        /// </example>
         [HttpGet]
+        [Authorize]
         public ActionResult UnAssign(int id, int CategoryID)
         {
-            Debug.WriteLine("UnAssigning mantra to -> " + id + "to category -> " + CategoryID);
+            // Get Token Credentials
+            GetApplicationCookie();
+
+            // Debug.WriteLine("UnAssigning mantra to -> " + id + "to category -> " + CategoryID);
 
             // Objective: Communicate with Mantra Data Api to UNASSIGN Mantra to Category
             // curl -d "" -v https://localhost:44316/api/MantraData/UnAssignMantraToCategory/13/3
@@ -154,16 +228,42 @@ namespace MediationApplication.Controllers
 
             HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            return RedirectToAction("Details/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Details/" + id);
+
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
         }
 
-        // GET: MeditationSession/Error
+        // GET: Mantra/Error
+        /// <summary>
+        ///     Routes to a dynamically generated "Error" Page.
+        /// </summary>
+        /// <returns> A dynamic webpage which provides an Error Message. </returns>
+        /// <example>
+        ///     GET: Mantra/Error
+        /// </example>
+        [HttpGet]
         public ActionResult Error()
         {
             return View();
         }
 
         // GET: Mantra/New
+        /// <summary>
+        ///     Routes to a dynamically generated "Mantra New" Page. 
+        ///     Gathers information about a new Mantra from a form 
+        ///     that will be added to the database.
+        /// </summary>
+        /// <returns> A dynamic webpage which asks the user for new information regarding a Mantra as part of a form. </returns>
+        /// <example>
+        ///     GET: Mantra/New
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult New()
         {
@@ -174,6 +274,24 @@ namespace MediationApplication.Controllers
         }
 
         // POST: Mantra/Create
+        /// <summary>
+        ///    Receives a POST request containing information about a new Mantra, 
+        ///    Conveys this information to the AddMantra Method, inorder
+        ///    to add the specific Mantra to the database.
+        ///    Redirects to the "Mantra List" page.
+        /// </summary>
+        /// <param name="mantra"> Mantra Object </param>
+        /// <returns> 
+        ///     A dynamic webpage which provides a new Category's information.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     Mantra/Create
+        ///     {
+        ///         "MantraName": "Stay calm like a pond"
+        ///     }
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Create(Mantra mantra)
@@ -206,6 +324,17 @@ namespace MediationApplication.Controllers
         }
 
         // GET: Mantra/Edit/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Mantra Edit" Page. 
+        ///     That asks the user for new information as part of a form.
+        ///     Gathers information from the MeditationApplication database.
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Mantra. </returns>
+        /// <example>
+        ///     Mantra/Edit/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -232,6 +361,21 @@ namespace MediationApplication.Controllers
         }
 
         // POST: Mantra/Update/5
+        /// <summary>
+        ///     Receives a POST request containing information about an existing Mantra in the database, 
+        ///     with new values. Conveys this information to the UpdateMantra Method, 
+        ///     and redirects to the "Mantra List" page.
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <param name="mantra"> Mantra Object </param>
+        /// <returns> A dynamic webpage which provides the current information of a Mantra </returns>
+        /// <example>
+        ///     Mantra/Update/11
+        ///     {
+        ///         "MantraID": 11,
+        ///         "MantraName": "Stay calm like a pond"
+        ///     }
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Update(int id, Mantra mantra)
@@ -262,6 +406,16 @@ namespace MediationApplication.Controllers
         }
 
         // GET: Mantra/DeleteConfirmation/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Mantra DeleteConfirmation" Page. 
+        ///     Gathers information about a specific Mantra that will be deleted from the database
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Mantra </returns>
+        /// <example>
+        ///     GET: Mantra/DeleteConfirmation/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult DeleteConfirmation(int id)
         {
@@ -288,6 +442,17 @@ namespace MediationApplication.Controllers
         }
 
         // POST: Mantra/Delete/5
+        /// <summary>
+        ///    Receives a POST request containing information about an existing Mantra in the database, 
+        ///    Conveys this information to the DeleteMantra Method, inorder
+        ///    to remove the specific Mantra from the database.
+        ///    Redirects to the "Mantra List" page.
+        /// </summary>
+        /// <param name="id"> Mantra ID </param>
+        /// <returns> A dynamic webpage which provides the current information of a Mantra </returns>
+        /// <example>
+        ///     POST: Mantra/Delete/5
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Delete(int id)

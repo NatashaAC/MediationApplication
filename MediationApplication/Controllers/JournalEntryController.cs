@@ -44,6 +44,15 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/List
+        /// <summary>
+        ///     Routes to a dynamically generated "Journal Entry List" Page. 
+        ///     Gathers information about all the entries in the database.
+        /// </summary>
+        /// <returns> A dynamic webpage which displays a List of Entries </returns>
+        /// <example>
+        ///     GET: JournalEntry/List
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult List()
         {
@@ -65,6 +74,16 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/Details/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Journal Entry Details" Page.
+        ///     Gathers information about a specific entry from the database
+        /// </summary>
+        /// <param name="id"> Entry ID </param>
+        /// <returns> A dynamic webpage which provides the current information of an entry </returns>
+        /// <example>
+        ///     GET: JournalEntry/Details/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult Details(int id)
         {
@@ -85,13 +104,31 @@ namespace MediationApplication.Controllers
             return View(SelectedEntry);
         }
 
-        // GET: MeditationSession/Error
+        // GET: JournalEntry/Error
+        /// <summary>
+        ///     Routes to a dynamically generated "Error" Page.
+        /// </summary>
+        /// <returns> A dynamic webpage which provides an Error Message. </returns>
+        /// <example>
+        ///     GET: JournalEntry/Error
+        /// </example>
+        [HttpGet]
         public ActionResult Error()
         {
             return View();
         }
 
         // GET: JournalEntry/New
+        /// <summary>
+        ///     Routes to a dynamically generated "Journal Entry New" Page. 
+        ///     Gathers information about a new Entry from a form 
+        ///     that will be added to the database.
+        /// </summary>
+        /// <returns> A dynamic webpage which asks the user for new information regarding an Entry as part of a form. </returns>
+        /// <example>
+        ///     GET: JournalEntry/New
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult New()
         {
@@ -111,6 +148,28 @@ namespace MediationApplication.Controllers
         }
 
         // POST: JournalEntry/Create
+        /// <summary>
+        ///    Receives a POST request containing information about a new Entry, 
+        ///    Conveys this information to the AddEntry Method, inorder
+        ///    to add the specific entry to the database.
+        ///    Redirects to the "Journal Entry List" page.
+        /// </summary>
+        /// <param name="journalEntry"> Journal Entry Object </param>
+        /// <returns> 
+        ///     A dynamic webpage which provides a new Entries's information.
+        ///     or
+        ///     A dynamic webpage which provides an Error Message.
+        /// </returns>
+        /// <example>
+        ///     POST: JournalEntry/Create
+        ///     {
+        ///        "Location": "Outdoors",
+        ///         "MoodBefore": "Happy, Restless",
+        ///         "MoodAfter": "Happy, Relaxed",
+        ///         "Thoughts": "Living life",
+        ///         "SessionID": 9
+        ///     }
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Create(JournalEntry journalEntry)
@@ -144,6 +203,17 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/Edit/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Journal Entry Edit" Page. 
+        ///     That asks the user for new information as part of a form.
+        ///     Gathers information from the MeditationApplication database.
+        /// </summary>
+        /// <param name="id"> Entry ID </param>
+        /// <returns> A dynamic webpage which provides the current information of an Entry. </returns>
+        /// <example>
+        ///     JournalEntry/Edit/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -172,6 +242,25 @@ namespace MediationApplication.Controllers
         }
 
         // POST: JournalEntry/Update/5
+        /// <summary>
+        ///     Receives a POST request containing information about an existing Entry in the database, 
+        ///     with new values. Conveys this information to the UpdateEntry Method, 
+        ///     and redirects to the "Journal Entry List" page.
+        /// </summary>
+        /// <param name="id"> Entry ID </param>
+        /// <param name="journalEntry"> Journal Entry Object </param>
+        /// <returns> A dynamic webpage which provides the current information of a Entry </returns>
+        /// <example>
+        ///     JournalEntry/Update/6
+        ///     {
+        ///         "JournalEntryID": 6,
+        ///         "Location": "Outdoors",
+        ///         "MoodBefore": "Happy, Restless",
+        ///         "MoodAfter": "Happy, Relaxed",
+        ///         "Thoughts": "Living life",
+        ///         "SessionID": 9
+        ///     }
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Update(int id, JournalEntry journalEntry)
@@ -202,6 +291,16 @@ namespace MediationApplication.Controllers
         }
 
         // GET: JournalEntry/DeleteConfirmation/5
+        /// <summary>
+        ///     Routes to a dynamically generated "Journal Entry DeleteConfirmation" Page. 
+        ///     Gathers information about a specific Entry that will be deleted from the database
+        /// </summary>
+        /// <param name="id"> Entry ID </param>
+        /// <returns> A dynamic webpage which provides the current information of an Entry </returns>
+        /// <example>
+        ///     GET: JournalEntry/DeleteConfirmation/5
+        /// </example>
+        [HttpGet]
         [Authorize]
         public ActionResult DeleteConfirmation(int id)
         {
@@ -220,6 +319,17 @@ namespace MediationApplication.Controllers
         }
 
         // POST: JournalEntry/Delete/5
+        /// <summary>
+        ///    Receives a POST request containing information about an existing Journal Entry in the database, 
+        ///    Conveys this information to the DeleteEntry Method, inorder
+        ///    to remove the specific Entry from the database.
+        ///    Redirects to the "Journal Entry List" page.
+        /// </summary>
+        /// <param name="id"> Entry ID </param>
+        /// <returns> A dynamic webpage which provides the current information of an Entry </returns>
+        /// <example>
+        ///     POST: JournalEntry/Delete/5
+        /// </example>
         [HttpPost]
         [Authorize]
         public ActionResult Delete(int id)
