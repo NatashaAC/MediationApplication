@@ -21,7 +21,7 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-![Home Page](./image/home.jpg)
+![Home Page](/MeditationApplication/Content/image/home.jpg)
 ![Session Selector](/MeditationApplication/Content/image/session_selector.jpg)
 ![Time Selector](/MeditationApplication/Content/image/time_selector.jpg)
 ![Colour Selector](/MeditationApplication/Content/image/colour_selector.jpg)
