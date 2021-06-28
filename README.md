@@ -1,5 +1,5 @@
 # Meditation Tracker
-This application was created for the Passion Project for the class HTTP5204 - Mobile Deveplopment. 
+This application was created for the Passion Project for the class HTTP5204 - Mobile Development. 
 I used Code-First Migrations to create my database, ASP.NET MVC Framework and LINQ to perform 
 CRUD operations.
 
