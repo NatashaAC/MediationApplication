@@ -21,11 +21,11 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-![Home Page](/image/home.jpg)
-![Session Selector](/image/session_selector.jpg)
-![Time Selector](/image/time_selector.jpg)
-![Colour Selector](/image/colour_selector.jpg)
-![Date Selector](/image/date_selector.jpg)
+![Home Page](./image/home.jpg)
+![Session Selector](./image/session_selector.jpg)
+![Time Selector](./image/time_selector.jpg)
+![Colour Selector](./image/colour_selector.jpg)
+![Date Selector](./image/date_selector.jpg)
 
 ## Extra Features/Updates
 - [ ] Add filter that sorts Mantras based on categories
