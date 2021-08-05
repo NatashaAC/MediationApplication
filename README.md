@@ -21,11 +21,20 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-![Home Page](https://github.com/NatashaAC/MediationApplication/Content/image/home.jpg)
-![Session Selector](https://github.com/NatashaAC/MediationApplication/Content/image/session_selector.jpg)
-![Time Selector](https://github.com/NatashaAC/MediationApplication/Content/image/time_selector.jpg)
-![Colour Selector](https://github.com/NatashaAC/MediationApplication/Content/image/colour_selector.jpg)
-![Date Selector](https://github.com/NatashaAC/MediationApplication/Content/image/date_selector.jpg)
+### Home Page
+![Home Page](MediationApplication/Content/image/home.jpg)
+
+### Session Selector
+![Session Selector](MediationApplication/Content/image/session_selector.jpg)
+
+### Time Selector
+![Time Selector](MediationApplication/Content/image/time_selector.jpg)
+
+### Colour Selector
+![Colour Selector](MediationApplication/Content/image/colour_selector.jpg)
+
+### Date Selector
+![Date Selector](MediationApplication/Content/image/date_selection.jpg)
 
 ## Extra Features/Updates
 - [ ] Add filter that sorts Mantras based on categories
