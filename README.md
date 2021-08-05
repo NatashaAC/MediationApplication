@@ -21,7 +21,7 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-![Home Page](/MeditationApplication/Content/image/home.jpg)
+[Home Page](/MeditationApplication/Content/image/home.jpg)
 ![Session Selector](/MeditationApplication/Content/image/session_selector.jpg)
 ![Time Selector](/MeditationApplication/Content/image/time_selector.jpg)
 ![Colour Selector](/MeditationApplication/Content/image/colour_selector.jpg)
@@ -33,7 +33,8 @@ add journal entries for those sessions, and search for mantras to use during the
 - [ ] Have images related to categories
 - [ ] Create timer for Meditation Session
 - [ ] Add audio/music when using timer
-- [ ] Add validation to forms
+- [ ] Validation to forms
+- [ ] TinyMCE editor https://www.tiny.cloud/
 
 ### Bugs 
 - [ ] Fix issue with wrong start time and end time being logged into database
