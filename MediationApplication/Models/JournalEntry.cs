@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace MediationApplication.Models
 {
@@ -11,9 +12,17 @@ namespace MediationApplication.Models
     {
         [Key]
         public int JournalEntryID { get; set; }
+
+        [Required]
         public string Location { get; set; }
+
+        [Required]
         public string MoodBefore { get; set; }
+
+        [Required]
         public string MoodAfter { get; set; }
+
+        [AllowHtml]
         public string Thoughts { get; set; }
 
         // A Journal Entry reflects on one specific mediation session
@@ -26,9 +35,17 @@ namespace MediationApplication.Models
     public class JournalEntryDto
     {
         public int JournalEntryID { get; set; }
+
+        [Required(ErrorMessage = "Please select a location!")]
         public string Location { get; set; }
+
+        [Required (ErrorMessage = "Please type in your Mood!")]
         public string MoodBefore { get; set; }
+
+        [Required(ErrorMessage = "Please type in your Mood!")]
         public string MoodAfter { get; set; }
+
+        [AllowHtml]
         public string Thoughts { get; set; }
 
         public int SessionID { get; set; }

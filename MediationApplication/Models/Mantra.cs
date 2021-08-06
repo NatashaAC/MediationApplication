@@ -10,6 +10,8 @@ namespace MediationApplication.Models
     {
         [Key]
         public int MantraID { get; set; }
+
+        [Required]
         public string MantraName { get; set; }
 
         // A Mantra can fall under many Categories
@@ -19,6 +21,8 @@ namespace MediationApplication.Models
     public class MantraDto
     {
         public int MantraID { get; set; }
+
+        [Required(ErrorMessage = "Please type in a mantra!")]
         public string MantraName { get; set; }
     }
 }

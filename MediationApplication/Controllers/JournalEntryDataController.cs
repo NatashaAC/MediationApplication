@@ -21,7 +21,7 @@ namespace MediationApplication.Controllers
         [Authorize]
         public IEnumerable<JournalEntryDto> ListEntries()
         {
-            List<JournalEntry> JournalEntries = db.JournalEntries.ToList();
+            List<JournalEntry> JournalEntries = db.JournalEntries.OrderByDescending(je => je.MeditationSession.SessionDate).ToList();
             List<JournalEntryDto> JournalEntryDtos = new List<JournalEntryDto>();
 
             JournalEntries.ForEach(JournalEntry => JournalEntryDtos.Add(new JournalEntryDto()

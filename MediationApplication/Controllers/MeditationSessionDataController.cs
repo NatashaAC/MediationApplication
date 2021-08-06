@@ -27,7 +27,7 @@ namespace MediationApplication.Controllers
         [Authorize]
         public IEnumerable<MeditationSessionDto> ListSessions()
         {
-            List<MeditationSession> MeditationSessions = db.MeditationSessions.ToList();
+            List<MeditationSession> MeditationSessions = db.MeditationSessions.OrderByDescending(ms => ms.SessionDate).ToList();
             List<MeditationSessionDto> MeditationSessionDtos = new List<MeditationSessionDto>();
 
             MeditationSessions.ForEach(Session => MeditationSessionDtos.Add(new MeditationSessionDto()

@@ -3,29 +3,18 @@
     ViewBag.Title = "Create";
 }
 
-<script src="~/Scripts/validation.js" type="text/javascript"></script>
-
 <nav class="subNav">
     <a class="btn sessionBtn" href="/Mantra/List">Cancel</a>
 </nav>
 
 <h2>Add a Mantra</h2>
 
-<form class="container-fluid" action="/Mantra/Create" method="POST" onsubmit="validateMantraForm()">
+<form class="container-fluid" action="/Mantra/Create" method="POST">
     <div>
         <label for="mantraname">Name</label>
-        <input id="mantraname" type="text" name="MantraName" />
+        <input id="mantraname" type="text" name="MantraName" data-val="true" data-val-required="Please type in a mantra" />
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="MantraName" data-valmsg-replace="true"></span>
     </div>
     <button class="btn formBtn" type="submit">Add Mantra</button>
 </form>
-
-<script type="text/javascript">
-    function validateMantraForm() {
-        var mantraName = document.getElementById("mantraname");
-
-        if (mantraName == "" || mantraName == null) {
-            console.log("empty or null value");
-            return false;
-        }
-    }
-</script>

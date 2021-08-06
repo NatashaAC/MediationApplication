@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Let's reflect on your meditation!</h2>
 
 <form class="container-fluid" action="/JournalEntry/Create" method="POST">
     <div>
@@ -19,20 +19,26 @@
     <div>
         <label>Where did you meditate?</label>
         <div>
-            <input id="indoor" type="radio" name="Location" value="indoors" />
+            <input id="indoor" type="radio" name="Location" value="indoors" data-val="true" data-val-required="Please select a location" />
             <label for="indoor">Indoors</label>
 
-            <input id="outdoor" type="radio" name="Location" value="outdoors" />
+            <input id="outdoor" type="radio" name="Location" value="outdoors" data-val="true" data-val-required="Please select a location" />
             <label for="outdoor">Outdoors</label>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="Location" data-valmsg-replace="true"></span>
         </div>
     </div>
     <div>
         <label for="moodbefore">How did you feel before meditating?</label>
-        <input id="moodbefore" type="text" name="MoodBefore" />
+        <input id="moodbefore" type="text" name="MoodBefore" data-val="true" data-val-required="Please type in a mood!" />
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="MoodBefore" data-valmsg-replace="true"></span>
     </div>
     <div>
         <label for="moodafter">How do you feel now?</label>
-        <input id="moodafter" type="text" name="MoodAfter" />
+        <input id="moodafter" type="text" name="MoodAfter" data-val="true" data-val-required="Please type in a mood!" />
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="MoodAfter" data-valmsg-replace="true"></span>
     </div>
     <div>
         <div>

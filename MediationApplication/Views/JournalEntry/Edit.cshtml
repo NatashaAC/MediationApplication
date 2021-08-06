@@ -35,20 +35,26 @@
                 string indoor = Model.SelectedEntry.Location == "indoors" ? "checked" : "";
                 string outdoor = Model.SelectedEntry.Location == "outdoors" ? "checked" : "";
             }
-            <input id="indoor" type="radio" name="Location" value="indoors" @indoor />
+            <input id="indoor" type="radio" name="Location" value="indoors" @indoor data-val="true" data-val-required="Please select a location" />
             <label for="indoor">Indoors</label>
 
-            <input id="outdoor" type="radio" name="Location" value="outdoors" @outdoor />
+            <input id="outdoor" type="radio" name="Location" value="outdoors" @outdoor data-val="true" data-val-required="Please select a location" />
             <label for="outdoor">Outdoors</label>
+
+            <span class="field-validation-valid text-danger" data-valmsg-for="Location" data-valmsg-replace="true"></span>
         </div>
     </div>
     <div>
         <label for="moodbefore">How did you feel before meditating?</label>
-        <input id="moodbefore" type="text" name="MoodBefore" value="@Model.SelectedEntry.MoodBefore" />
+        <input id="moodbefore" type="text" name="MoodBefore" value="@Model.SelectedEntry.MoodBefore" data-val="true" data-val-required="Please type in a mood!" />
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="MoodBefore" data-valmsg-replace="true"></span>
     </div>
     <div>
         <label for="moodafter">How do you feel now?</label>
-        <input id="moodafter" type="text" name="MoodAfter" value="@Model.SelectedEntry.MoodAfter" />
+        <input id="moodafter" type="text" name="MoodAfter" value="@Model.SelectedEntry.MoodAfter" data-val="true" data-val-required="Please type in a mood!" />
+
+        <span class="field-validation-valid text-danger" data-valmsg-for="MoodAfter" data-valmsg-replace="true"></span>
     </div>
     <div>
         <div>

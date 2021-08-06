@@ -11,9 +11,17 @@ namespace MediationApplication.Models
     {
         [Key]
         public int SessionID { get; set; }
+
+        [Required]
         public DateTime SessionDate { get; set; }
+
+        [Required]
         public DateTime SessionStartTime { get; set; }
+
+        [Required]
         public DateTime SessionEndTime { get; set; }
+
+        [Required]
         public int SessionDuration { get; set; }
 
         // A meditation session uses one mantra
@@ -26,10 +34,17 @@ namespace MediationApplication.Models
     public class MeditationSessionDto
     {
         public int SessionID { get; set; }
+
+        [Required(ErrorMessage = "Please select a date!")]
         public DateTime SessionDate { get; set; }
+
+        [Required(ErrorMessage = "Please select a start time!")]
         public DateTime SessionStartTime { get; set; }
 
+        [Required(ErrorMessage = "Please select a end time!")]
         public DateTime SessionEndTime { get; set; }
+
+        [Required(ErrorMessage = "Please select a duration!")]
         public int SessionDuration { get; set; }
 
         public int MantraID { get; set; }
