@@ -4,13 +4,15 @@
     ViewBag.Title = "Edit";
 }
 
+<script src="~/Scripts/validation.js" type="text/javascript"></script>
+
 <nav class="subNav">
     <a class="backLink" href="/Mantra/List">Cancel</a>
 </nav>
 
 <h2>Update a Mantra</h2>
 
-<form action="/Mantra/Update/@Model.MantraID" method="POST">
+<form action="/Mantra/Update/@Model.MantraID" method="POST" onsubmit="validateMantraForm()">
     <div style="display: none;">
         <input type="number" name="MantraID" value="@Model.MantraID" />
     </div>

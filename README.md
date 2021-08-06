@@ -21,11 +21,11 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-![Home Page](/MeditationApplication/Content/image/home.jpg)
-![Session Selector](/MeditationApplication/Content/image/session_selector.jpg)
-![Time Selector](/MeditationApplication/Content/image/time_selector.jpg)
-![Colour Selector](/MeditationApplication/Content/image/colour_selector.jpg)
-![Date Selector](/MeditationApplication/Content/image/date_selector.jpg)
+[Home Page](/MeditationApplication/Content/image/home.jpg)
+[Session Selector](/MeditationApplication/Content/image/session_selector.jpg)
+[Time Selector](/MeditationApplication/Content/image/time_selector.jpg)
+[Colour Selector](/MeditationApplication/Content/image/colour_selector.jpg)
+[Date Selector](/MeditationApplication/Content/image/date_selector.jpg)
 
 ## Extra Features/Updates
 - [ ] Add filter that sorts Mantras based on categories
