@@ -21,11 +21,20 @@ add journal entries for those sessions, and search for mantras to use during the
 - [X] Register and Sign Up
 
 ## Images
-[Home Page](/MeditationApplication/Content/image/home.jpg)
-[Session Selector](/MeditationApplication/Content/image/session_selector.jpg)
-[Time Selector](/MeditationApplication/Content/image/time_selector.jpg)
-[Colour Selector](/MeditationApplication/Content/image/colour_selector.jpg)
-[Date Selector](/MeditationApplication/Content/image/date_selector.jpg)
+### Home Page
+![Home Page](MediationApplication/Content/image/home.jpg)
+
+### Session Selector
+![Session Selector](MediationApplication/Content/image/session_selector.jpg)
+
+### Time Selector
+![Time Selector](MediationApplication/Content/image/time_selector.jpg)
+
+### Colour Selector
+![Colour Selector](MediationApplication/Content/image/colour_selector.jpg)
+
+### Date Selector
+![Date Selector](MediationApplication/Content/image/date_selection.jpg)
 
 ## Extra Features/Updates
 - [ ] Add filter that sorts Mantras based on categories
@@ -33,7 +42,8 @@ add journal entries for those sessions, and search for mantras to use during the
 - [ ] Have images related to categories
 - [ ] Create timer for Meditation Session
 - [ ] Add audio/music when using timer
-- [ ] Add validation to forms
+- [ ] Validation to forms
+- [ ] TinyMCE editor https://www.tiny.cloud/
 
 ### Bugs 
 - [ ] Fix issue with wrong start time and end time being logged into database
