@@ -15,25 +15,25 @@
         <input id="id" type="text" name="SessionID" value="@Model.SelectedSession.SessionID" />
     </div>
     <div>
-        <label for="date">Date</label>
+        <label for="date">Date</label><span class="reqMark">*</span>
         <input id="date" type="date" name="SessionDate" value="@Model.SelectedSession.SessionDate.ToString("yyyy-MM-dd")" data-val="true" data-val-required="Please select a date" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionDate" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="startTime">Start Time</label>
+        <label for="startTime">Start Time</label><span class="reqMark">*</span>
         <input id="startTime" type="time" name="SessionStartTime" value="@Model.SelectedSession.SessionStartTime.ToString("HH:mm")" data-val="true" data-val-required="Please select a start time" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionStartTime" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="endTime">End Time</label>
+        <label for="endTime">End Time</label><span class="reqMark">*</span>
         <input id="endTime" type="time" name="SessionEndTime" value="@Model.SelectedSession.SessionEndTime.ToString("HH:mm")" data-val="true" data-val-required="Please select a end time" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionEndTime" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="duration">Duration</label>
+        <label for="duration">Duration</label><span class="reqMark">*</span>
         <select id="duration" name="SessionDuration" data-val="true" data-val-required="Please select a duration">
             <option value="@Model.SelectedSession.SessionDuration">@Model.SelectedSession.SessionDuration</option>
             <option value="30">30 minutes</option>

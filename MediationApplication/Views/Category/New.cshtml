@@ -7,13 +7,13 @@
 
 <form class="container-fluid" action="/Category/Create" method="POST">
     <div>
-        <label for="categoryname">Name</label>
+        <label for="categoryname">Name</label><span class="reqMark">*</span>
         <input id="categoryname" type="text" name="CategoryName" data-val="true" data-val-required="Please type in a category name!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="CategoryName" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="categorydescription">Description</label>
+        <label for="categorydescription">Description</label><span class="reqMark">*</span>
         <textarea id="categorydescription" cols="40" rows="5" name="CategoryDescription" data-val="true" data-val-required="Please type in a description!"></textarea>
 
         <span class="field-validation-valid text-danger" data-valmsg-for="CategoryDescription" data-valmsg-replace="true"></span>

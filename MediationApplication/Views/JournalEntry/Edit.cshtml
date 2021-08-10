@@ -29,7 +29,7 @@
         <input type="text" name="JournalEntryID" value="@Model.SelectedEntry.JournalEntryID" />
     </div>
     <div>
-        <label>Where did you meditate?</label>
+        <label>Where did you meditate?</label><span class="reqMark">*</span>
         <div>
             @{
                 string indoor = Model.SelectedEntry.Location == "indoors" ? "checked" : "";
@@ -45,13 +45,13 @@
         </div>
     </div>
     <div>
-        <label for="moodbefore">How did you feel before meditating?</label>
+        <label for="moodbefore">How did you feel before meditating?</label><span class="reqMark">*</span>
         <input id="moodbefore" type="text" name="MoodBefore" value="@Model.SelectedEntry.MoodBefore" data-val="true" data-val-required="Please type in a mood!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="MoodBefore" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="moodafter">How do you feel now?</label>
+        <label for="moodafter">How do you feel now?</label><span class="reqMark">*</span>
         <input id="moodafter" type="text" name="MoodAfter" value="@Model.SelectedEntry.MoodAfter" data-val="true" data-val-required="Please type in a mood!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="MoodAfter" data-valmsg-replace="true"></span>

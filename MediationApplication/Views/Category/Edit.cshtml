@@ -16,14 +16,14 @@
 
     </div>
     <div>
-        <label for="categoryname">Name</label>
+        <label for="categoryname">Name</label><span class="reqMark">*</span>
         <input id="categoryname" type="text" name="CategoryName" value="@Model.CategoryName" data-val="true" data-val-required="Please type in a category name!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="CategoryName" data-valmsg-replace="true"></span>
     </div>
     <div>
         <div>
-            <label for="categorydescription">Description</label>
+            <label for="categorydescription">Description</label><span class="reqMark">*</span>
         </div>
         <textarea id="categorydescription" cols="40" rows="5" name="CategoryDescription" data-val="true" data-val-required="Please type in a description!">@Model.CategoryDescription</textarea>
 

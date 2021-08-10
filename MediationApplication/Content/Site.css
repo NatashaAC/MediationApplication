@@ -26,7 +26,13 @@ textarea {
 
 label {
     margin-right: 5px;
+    margin-top: 5px;
     font-size: 16px;
+}
+
+#moodbefore, #moodafter {
+    display: block;
+    margin-top: 0;
 }
 
 .navBg {
@@ -184,6 +190,10 @@ label {
 
 .navLinks a:hover {
     color: #61B000;
+}
+
+.reqMark {
+    color: #ff0000;
 }
 
 h2 {

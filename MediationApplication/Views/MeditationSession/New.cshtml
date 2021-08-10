@@ -8,25 +8,25 @@
 
 <form class="container-fluid" action="/Meditationsession/Create" method="POST">
     <div class="input-group">
-        <label for="date">Date</label>
+        <label for="date">Date</label><span class="reqMark">*</span>
         <input id="date" type="date" name="SessionDate" data-val="true" data-val-required="Please select a date" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionDate" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="startTime">Start Time</label>
+        <label for="startTime">Start Time</label><span class="reqMark">*</span>
         <input id="startTime" type="time" name="SessionStartTime" data-val="true" data-val-required="Please select a start time" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionStartTime" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="endTime">End Time</label>
+        <label for="endTime">End Time</label><span class="reqMark">*</span>
         <input id="endTime" type="time" name="SessionEndTime" data-val="true" data-val-required="Please select a end time" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="SessionEndTime" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="duration">Duration</label>
+        <label for="duration">Duration</label><span class="reqMark">*</span>
         <select id="duration" name="SessionDuration" data-val="true" data-val-required="Please select a duration">
             <option>---Select a duration---</option>
             <option value="30">30 minutes</option>

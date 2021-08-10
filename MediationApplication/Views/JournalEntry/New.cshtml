@@ -17,7 +17,7 @@
         </select>
     </div>
     <div>
-        <label>Where did you meditate?</label>
+        <label>Where did you meditate?</label><span class="reqMark">*</span>
         <div>
             <input id="indoor" type="radio" name="Location" value="indoors" data-val="true" data-val-required="Please select a location" />
             <label for="indoor">Indoors</label>
@@ -29,13 +29,13 @@
         </div>
     </div>
     <div>
-        <label for="moodbefore">How did you feel before meditating?</label>
+        <label for="moodbefore">How did you feel before meditating?</label><span class="reqMark">*</span>
         <input id="moodbefore" type="text" name="MoodBefore" data-val="true" data-val-required="Please type in a mood!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="MoodBefore" data-valmsg-replace="true"></span>
     </div>
     <div>
-        <label for="moodafter">How do you feel now?</label>
+        <label for="moodafter">How do you feel now?</label><span class="reqMark">*</span>
         <input id="moodafter" type="text" name="MoodAfter" data-val="true" data-val-required="Please type in a mood!" />
 
         <span class="field-validation-valid text-danger" data-valmsg-for="MoodAfter" data-valmsg-replace="true"></span>
